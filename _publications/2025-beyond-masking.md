@@ -18,8 +18,8 @@ status:
 year: 2025
 date: 2025-11-01   # year-level only; used for ordering
 order: 6
-teaser: cikm2025.png
-teaser_hover:
+teaser: cikm_teaser.jpg
+teaser_hover: cikm_hover.png
 paper_url: https://doi.org/10.1145/3746252.3760853
 code_url: https://github.com/Ckck12/Beyond-Masking
 project_url: https://ckck12.github.io/Beyond-Masking/

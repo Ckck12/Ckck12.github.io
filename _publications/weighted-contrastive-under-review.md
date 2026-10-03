@@ -6,8 +6,8 @@ status: "Under review"
 year:
 date: 2025-01-01   # placeholder for ordering only; the submission date is not public
 order: 8
-teaser: under_review.png
-teaser_hover:
+teaser: hashformer_teaser.png
+teaser_hover: hashformer_hover.png
 paper_url:
 code_url: https://anonymous.4open.science/r/hashformer-4CE6/
 project_url:
