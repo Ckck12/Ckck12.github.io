@@ -21,8 +21,9 @@ collection: portfolio
 
 <div class="proj-body">
 
-<figure class="pfig pfig--narrow">
+<figure class="pfig">
 <img src="{{ site.baseurl }}/images/projects/llm_agent_pipeline.png" alt="LLM agent research pipeline with a cross-model review stage" loading="lazy">
+<figcaption><span class="lang-en">Gray dashed: open-source ARIS (not my work). Blue: my brief, reviewer harness and decision. Scores are reviewer outputs, not benchmark results.</span><span class="lang-ko" lang="ko">회색 점선: 오픈소스 ARIS(본인 작업 아님). 파랑: 본인이 작성한 브리프, 리뷰 하네스, 최종 판단. 점수는 리뷰어 출력이며 벤치마크 결과가 아닙니다.</span></figcaption>
 </figure>
 
 <div class="lang-en">
