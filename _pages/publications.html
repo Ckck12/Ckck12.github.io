@@ -12,43 +12,22 @@ author_profile: true
 {% endif %}
 
 {% assign pubs = site.publications | sort: "order" %}
+
+<h2 class="pub-section">Peer-reviewed</h2>
 <div class="pub-list">
 {% for pub in pubs %}
-  {% if pub.project_url %}
-    {% assign title_href = pub.project_url %}
-  {% elsif pub.paper_url %}
-    {% assign title_href = pub.paper_url %}
-  {% else %}
-    {% assign title_href = base_path | append: pub.url %}
+  {% if pub.status == nil or pub.status == "" %}
+    {% include pub-row.html pub=pub %}
   {% endif %}
-  <div class="pub-row{% if pub.featured %} pub-row--featured{% endif %}">
-    <div class="pub-thumb">
-      <a href="{{ base_path }}{{ pub.url }}">
-        {% if pub.teaser %}
-        <img src="{{ base_path }}/images/pubs/{{ pub.teaser }}" alt="{{ pub.title | escape }}">
-        {% endif %}
-        {% if pub.teaser_hover %}
-        <img class="pub-thumb__hover" src="{{ base_path }}/images/pubs/{{ pub.teaser_hover }}" alt="">
-        {% endif %}
-      </a>
-    </div>
-    <div class="pub-body">
-      <p class="pub-title"><a href="{{ title_href }}">{{ pub.title }}</a></p>
-      {% if pub.authors %}
-      <p class="pub-authors">{{ pub.authors | replace: "Chan Park", "<strong>Chan Park</strong>" }}</p>
-      {% endif %}
-      <p class="pub-venue">{{ pub.venue }}{% if pub.status %}{% if pub.venue %}, {% endif %}{{ pub.status }}{% endif %}</p>
-      <p class="pub-links">
-        <a href="{{ base_path }}{{ pub.url }}">[details]</a>
-        {% if pub.project_url %}<a href="{{ pub.project_url }}">[project page]</a>{% endif %}
-        {% if pub.paper_url %}<a href="{{ pub.paper_url }}">[paper]</a>{% endif %}
-        {% if pub.code_url %}<a href="{{ pub.code_url }}">[code]</a>{% endif %}
-      </p>
-      {% if pub.tldr %}
-      <p class="pub-tldr">{{ pub.tldr }}</p>
-      {% endif %}
-    </div>
-  </div>
 {% endfor %}
 </div>
-<p class="pub-legend">* equal contribution. Highlighted rows are first-author papers.</p>
+<p class="pub-legend">* equal contribution. Highlighted rows are first- or co-first-author papers.</p>
+
+<h2 class="pub-section">Manuscripts (not yet peer-reviewed)</h2>
+<div class="pub-list">
+{% for pub in pubs %}
+  {% if pub.status and pub.status != "" %}
+    {% include pub-row.html pub=pub %}
+  {% endif %}
+{% endfor %}
+</div>

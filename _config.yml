@@ -22,7 +22,7 @@ repository               : "Ckck12/Ckck12.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "profile.jpg"
   name             : "Chan Park"
   pronouns         : # example: "she/her"
   bio              : "AI researcher — vision-language-action models for driving and robotics"
