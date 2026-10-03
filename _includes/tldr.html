@@ -1,0 +1,14 @@
+{% comment %}
+  Three-line TL;DR box in English and Korean.
+  Usage: {% include tldr.html %} (reads page.tldr_en / page.tldr_ko)
+     or: {% include tldr.html doc=some_doc %}
+{% endcomment %}{% if include.doc %}{% assign tl_doc = include.doc %}{% else %}{% assign tl_doc = page %}{% endif %}
+<div class="tldr">
+<span class="tldr__label">TL;DR</span>
+<ul class="lang-en">
+{% for tl_line in tl_doc.tldr_en %}<li>{{ tl_line }}</li>
+{% endfor %}</ul>
+<ul class="lang-ko" lang="ko">
+{% for tl_line in tl_doc.tldr_ko %}<li>{{ tl_line }}</li>
+{% endfor %}</ul>
+</div>

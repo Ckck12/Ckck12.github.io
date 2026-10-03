@@ -1,0 +1,101 @@
+{% comment %}
+  Shared content for the Submersivity publication page and project page.
+  The page itself must include lang-toggle.html once before this include.
+{% endcomment %}{% assign subm_doc = site.publications | where: "pub_id", "submersivity" | first %}
+{% include tldr.html doc=subm_doc %}
+
+{% include pub-meta.html doc=subm_doc %}
+
+<div class="proj-body">
+
+<p class="pnote"><span class="lang-en">Mann Lab, University of Toronto, Jan. – Jul. 2026 · 3rd author · My part: the debris detector and the native Android XR HUD receiver.</span><span class="lang-ko" lang="ko">토론토 대학교 Mann Lab, 2026년 1월 – 7월 · 제3저자 · 담당: 쓰레기 탐지 모델과 XR 고글용 안드로이드 HUD 수신 앱.</span></p>
+
+<div class="kpis">
+<div class="kpi"><span class="kpi__value">0.27 &rarr; 0.49</span><span class="kpi__label lang-en">mAP50 on the TACO validation split (multi-class YOLOv8n &rarr; single-class YOLOv8s)</span><span class="kpi__label lang-ko" lang="ko">TACO 검증 세트 mAP50 (다중 클래스 YOLOv8n &rarr; 단일 클래스 YOLOv8s)</span></div>
+<div class="kpi"><span class="kpi__value">92.1%</span><span class="kpi__label lang-en">precision of the final detector on the combined validation set</span><span class="kpi__label lang-ko" lang="ko">최종 탐지 모델의 통합 검증 세트 정밀도</span></div>
+<div class="kpi"><span class="kpi__value">12,177</span><span class="kpi__label lang-en">terrestrial + underwater images used for fine-tuning</span><span class="kpi__label lang-ko" lang="ko">미세조정에 사용한 지상 + 수중 쓰레기 이미지 수</span></div>
+<div class="kpi"><span class="kpi__value">796 / 823</span><span class="kpi__label lang-en">survey frames registered by COLMAP for the basin map</span><span class="kpi__label lang-ko" lang="ko">수조 지도 구축 시 COLMAP으로 정합된 프레임 수</span></div>
+</div>
+
+<div class="lang-en">
+<h2 class="star-h"><span class="star-tag">S</span>Situation</h2>
+<p>Peter Street Basin is an outdoor safety basin of roughly 60 m &times; 30 m on Toronto's waterfront, connected to Lake Ontario. Cleaning it up means finding submerged debris, which is hard: light attenuation, scattering, suspended particles and colour shift hide objects underwater, and a swimmer has no map of where the garbage is.</p>
+</div>
+<div class="lang-ko" lang="ko">
+<h2 class="star-h"><span class="star-tag">S</span>상황 (Situation)</h2>
+<p>Peter Street Basin은 토론토 호숫가에 있는 약 60 m &times; 30 m 크기의 야외 안전 수조로, 온타리오 호수와 이어져 있습니다. 이곳을 청소하려면 물속 쓰레기를 찾아야 하는데, 이것이 쉽지 않습니다. 빛의 감쇠, 산란, 부유물, 색 왜곡 때문에 물체가 잘 보이지 않고, 수영하는 사람에게는 쓰레기가 어디에 있는지 알려 주는 지도도 없습니다.</p>
+</div>
+
+<figure class="pfig">
+<img src="{{ site.baseurl }}/images/detail/subm/fig1_basin_aerial.jpg" alt="Aerial photo of Peter Street Basin in winter, surrounded by high-rise buildings" loading="lazy">
+<figcaption><span class="lang-en">Peter Street Basin, Toronto (aerial view, from the paper's site figure).</span><span class="lang-ko" lang="ko">토론토 Peter Street Basin 항공 사진(논문의 현장 그림 중 일부).</span></figcaption>
+</figure>
+
+<div class="lang-en">
+<h2 class="star-h"><span class="star-tag">T</span>Task</h2>
+<p>Turn underwater video into guidance a swimmer can act on: detect debris from a small RC submarine's camera, place each detection on a map of the basin, and show the nearest target on XR swim goggles. Within the team, I was responsible for the debris detector and for the goggle-side HUD receiver.</p>
+</div>
+<div class="lang-ko" lang="ko">
+<h2 class="star-h"><span class="star-tag">T</span>과제 (Task)</h2>
+<p>수중 영상을 수영하는 사람이 바로 행동할 수 있는 안내로 바꾸는 것이 목표였습니다. 소형 RC 잠수정 카메라로 쓰레기를 탐지하고, 각 탐지 결과를 수조 지도 위에 올린 뒤, 가장 가까운 목표를 XR 수경에 보여 줍니다. 팀 안에서 저는 쓰레기 탐지 모델과 고글 쪽 HUD 수신 앱을 맡았습니다.</p>
+</div>
+
+<figure class="pfig">
+<img src="{{ site.baseurl }}/images/detail/subm/fig2_pipeline.png" alt="Pipeline: design RC submarine, acquire underwater frames, detect garbage, localize and map the basin, display location on XR goggles" loading="lazy">
+<figcaption><span class="lang-en"><strong>Fig. 2.</strong> End-to-end pipeline: RC submarine design, underwater frame acquisition, garbage detection, basin localization and mapping, and display on the XR goggles.</span><span class="lang-ko" lang="ko"><strong>그림 2.</strong> 전체 파이프라인: RC 잠수정 설계, 수중 프레임 획득, 쓰레기 탐지, 수조 위치 추정 및 지도화, XR 고글 표시.</span></figcaption>
+</figure>
+
+<div class="lang-en">
+<h2 class="star-h"><span class="star-tag">A</span>Action</h2>
+<ul>
+<li><strong>Sensing:</strong> an open-source ESP-DIVE RC submarine with a XIAO ESP32-S3 camera streams frames over Wi-Fi to a host laptop, where detection runs.</li>
+<li><strong>Detection (my part):</strong> a cleanup swimmer does not need to know whether an item is a bottle or a can, so I trained the detector with all debris categories merged into a single "garbage" class. Moving from a multi-class YOLOv8n to a single-class YOLOv8s raised mAP50 on the TACO validation split from 0.27 to 0.49. The final YOLOv8s was fine-tuned on a combined set of 12,177 terrestrial and underwater garbage images.</li>
+<li><strong>Localization:</strong> COLMAP structure-from-motion and ArUco markers placed around the basin walls register camera poses, and therefore detections, in basin coordinates.</li>
+<li><strong>XR HUD receiver (my part):</strong> a native Android app on Vuzix Smart Swim goggles shows a compass arrow to the nearest target, its distance and class, and a mini map of the basin. I built the receiving side: byte-stream packet reassembly, 500 ms stale-data detection, auto-reconnect, and a link-quality indicator.</li>
+</ul>
+</div>
+<div class="lang-ko" lang="ko">
+<h2 class="star-h"><span class="star-tag">A</span>행동 (Action)</h2>
+<ul>
+<li><strong>수중 촬영:</strong> 오픈소스 ESP-DIVE RC 잠수정에 XIAO ESP32-S3 카메라를 달아, 프레임을 Wi-Fi로 노트북에 보내고 그곳에서 탐지를 수행합니다.</li>
+<li><strong>탐지 (담당):</strong> 쓰레기를 줍는 사람에게는 병인지 캔인지가 중요하지 않기 때문에 모든 쓰레기 종류를 하나의 “쓰레기” 클래스로 합쳐 탐지 모델을 학습했습니다. 다중 클래스 YOLOv8n에서 단일 클래스 YOLOv8s로 바꾸자 TACO 검증 세트 mAP50이 0.27에서 0.49로 올랐습니다. 최종 YOLOv8s는 지상과 수중 쓰레기 이미지 12,177장을 합친 데이터로 미세조정했습니다.</li>
+<li><strong>위치 추정:</strong> COLMAP SfM(Structure-from-Motion)과 수조 벽에 붙인 ArUco 마커로 카메라 위치를, 그리고 그에 따라 탐지 위치를 수조 좌표계에 정합합니다.</li>
+<li><strong>XR HUD 수신 앱 (담당):</strong> Vuzix Smart Swim 고글의 안드로이드 앱이 가장 가까운 목표를 가리키는 나침반 화살표, 거리, 클래스, 수조 미니맵을 보여 줍니다. 저는 수신부를 만들었습니다. 바이트 스트림 패킷 재조립, 500 ms 오래된 데이터 감지, 자동 재연결, 링크 품질 표시가 포함됩니다.</li>
+</ul>
+</div>
+
+<figure class="pfig">
+<img src="{{ site.baseurl }}/images/detail/subm/fig5_detections.jpg" alt="Two underwater frames with debris detections: packaging under turbid light and a small distant object near the basin floor" loading="lazy">
+<figcaption><span class="lang-en"><strong>Fig. 5.</strong> Underwater detections during deployment in the basin: packaging-like debris under turbid lighting (left) and a small, distant object near the basin floor (right).</span><span class="lang-ko" lang="ko"><strong>그림 5.</strong> 수조 현장 탐지 예시: 탁한 조명 속 포장재 쓰레기(왼쪽)와 바닥 근처의 작고 먼 물체(오른쪽).</span></figcaption>
+</figure>
+
+<figure class="pfig pfig--narrow">
+<img src="{{ site.baseurl }}/images/detail/subm/fig4_survey_map.png" alt="Map of Peter Street Basin with the camera trajectory around the perimeter and accumulated garbage detections" loading="lazy">
+<figcaption><span class="lang-en"><strong>Fig. 4.</strong> A survey path around the basin perimeter with accumulated detections in basin coordinates. The trajectory comes from the COLMAP reconstruction of 796 registered frames; frame-level hits are detection events, not de-duplicated objects.</span><span class="lang-ko" lang="ko"><strong>그림 4.</strong> 수조 둘레를 따라간 조사 경로와 수조 좌표계에 누적된 탐지 결과. 경로는 정합된 796개 프레임의 COLMAP 복원에서 얻었으며, 점들은 프레임 단위 탐지 이벤트로 중복 제거된 물체 수가 아닙니다.</span></figcaption>
+</figure>
+
+<figure class="pfig">
+<img src="{{ site.baseurl }}/images/detail/subm/fig6_xr_hud.jpg" alt="XR HUD on Vuzix Smart Swim goggles: compass arrow, 4.1 m range, class OTHER, and a mini map of Peter Street Basin" loading="lazy">
+<figcaption><span class="lang-en"><strong>Fig. 6.</strong> The XR head-up display on the goggles: compass arrow to the nearest target, range, class label, and a reduced basin map with registered detections.</span><span class="lang-ko" lang="ko"><strong>그림 6.</strong> 고글의 XR HUD: 가장 가까운 목표를 가리키는 나침반 화살표, 거리, 클래스, 탐지 위치가 표시된 수조 미니맵.</span></figcaption>
+</figure>
+
+<div class="lang-en">
+<h2 class="star-h"><span class="star-tag">R</span>Result</h2>
+<ul>
+<li>The single-class detector reached <strong>92.1% precision</strong> on the combined validation set after fine-tuning on 12,177 images; moving from a multi-class YOLOv8n to a single-class YOLOv8s took TACO mAP50 from <strong>0.27 to 0.49</strong>.</li>
+<li>The basin map registered <strong>796 of 823</strong> survey frames, giving a basin-aligned trajectory on which detections accumulate.</li>
+<li>Preliminary field runs showed debris detected under poor underwater visibility and live direction and range cues on the goggles.</li>
+<li>Published at IEEE ICMA 2026 (3rd author).</li>
+</ul>
+</div>
+<div class="lang-ko" lang="ko">
+<h2 class="star-h"><span class="star-tag">R</span>결과 (Result)</h2>
+<ul>
+<li>12,177장으로 미세조정한 단일 클래스 탐지 모델은 통합 검증 세트에서 <strong>정밀도 92.1%</strong>를 기록했고, 다중 클래스 YOLOv8n에서 단일 클래스 YOLOv8s로 바꾸면서 TACO mAP50이 <strong>0.27에서 0.49</strong>로 올랐습니다.</li>
+<li>수조 지도는 조사 프레임 <strong>823개 중 796개</strong>를 정합해, 탐지 결과가 쌓이는 수조 기준 경로를 만들었습니다.</li>
+<li>예비 현장 실험에서 탁한 수중 환경에서도 쓰레기를 탐지하고, 고글에 방향과 거리 안내를 실시간으로 표시했습니다.</li>
+<li>IEEE ICMA 2026에 제3저자로 게재되었습니다.</li>
+</ul>
+</div>
+
+</div>

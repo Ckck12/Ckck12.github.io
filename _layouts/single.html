@@ -34,7 +34,8 @@ layout: default
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.modified | date: "%Y-%m-%d" }}">{{ page.modified | date: "%B %d, %Y" }}</time></p>
         {% endif %}
         
-        {% if page.collection == 'publications' %}
+        {% if page.collection == 'publications' and page.meta_in_body %}
+        {% elsif page.collection == 'publications' %}
           <p>{% if page.authors %}{{ page.authors | replace: "Chan Park", "<strong>Chan Park</strong>" }}<br />{% endif %}{% if page.venue and page.venue != "" %}<i>{{ page.venue }}</i>{% endif %}{% if page.status %}{% if page.venue and page.venue != "" %}, {% endif %}{{ page.status }}{% endif %}</p>
         {% elsif page.collection == 'portfolio' %}
         {% elsif page.date %}

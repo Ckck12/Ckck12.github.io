@@ -28,6 +28,7 @@
       {% if pub.project_url %}<a href="{{ pub.project_url }}">[project page]</a>{% endif %}
       {% if pub.paper_url %}<a href="{{ pub.paper_url }}">[paper]</a>{% endif %}
       {% if pub.code_url %}<a href="{{ pub.code_url }}">[code]</a>{% endif %}
+      {% if pub.slides_url %}<a href="{{ base_path }}{{ pub.slides_url }}">[ppt]</a>{% endif %}
     </p>
     {% if pub.tldr %}
     <p class="pub-tldr">{{ pub.tldr }}</p>

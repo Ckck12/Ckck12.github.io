@@ -1,0 +1,447 @@
+/* ==========================================================================
+   PROJECT / PUBLICATION DETAIL PAGES
+   (language toggle, TL;DR box, author block, STAR sections, figures,
+   videos, result tables, stat tiles, simple bar charts)
+   ========================================================================== */
+
+/* ---- English / Korean toggle ------------------------------------------- */
+/* Default (no JS or nothing saved) = English. */
+html[data-lang="ko"] .lang-en {
+  display: none !important;
+}
+
+html:not([data-lang="ko"]) .lang-ko {
+  display: none !important;
+}
+
+.lang-switch {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 0.75em;
+}
+
+.lang-switch__group {
+  display: inline-flex;
+  border: 1px solid var(--global-dark-border-color);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.lang-switch__btn {
+  margin: 0;
+  padding: 0.3em 0.9em;
+  border: 0;
+  background: transparent;
+  color: var(--global-text-color);
+  font-size: 0.8em;
+  line-height: 1.4;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--global-base-color);
+    outline-offset: -2px;
+  }
+}
+
+html:not([data-lang="ko"]) .lang-switch__btn[data-lang-set="en"],
+html[data-lang="ko"] .lang-switch__btn[data-lang-set="ko"] {
+  background: var(--global-base-color);
+  color: #fff;
+  font-weight: bold;
+}
+
+/* ---- TL;DR -------------------------------------------------------------- */
+.tldr {
+  margin: 0 0 1.25em;
+  padding: 0.9em 1.1em;
+  border-left: 4px solid var(--global-base-color);
+  border-radius: 4px;
+  background: rgba(127, 127, 127, 0.08); /* works in light and dark themes */
+
+  .tldr__label {
+    display: block;
+    margin-bottom: 0.3em;
+    font-size: 0.75em;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--global-base-color);
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+
+  li {
+    margin: 0.2em 0;
+    line-height: 1.5;
+  }
+}
+
+/* ---- Authors / affiliations / venue / buttons --------------------------- */
+.pub-meta {
+  margin: 0 0 1.5em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--global-border-color);
+  text-align: center;
+
+  p {
+    margin: 0.25em 0;
+  }
+}
+
+.pub-meta__authors {
+  font-size: 1.02em;
+  line-height: 1.6;
+
+  sup {
+    font-size: 0.7em;
+  }
+}
+
+.pub-meta__affs,
+.pub-meta__notes {
+  font-size: 0.82em;
+  color: var(--global-fig-caption-color);
+  line-height: 1.5;
+
+  span {
+    display: inline-block;
+    margin: 0 0.5em;
+  }
+}
+
+.pub-meta__title {
+  font-size: 1.05em;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.pub-meta__venue {
+  font-style: italic;
+}
+
+.pub-meta__links {
+  margin-top: 0.6em !important;
+}
+
+.pbtn {
+  display: inline-block;
+  margin: 0.2em 0.15em;
+  padding: 0.3em 0.9em;
+  border: 1px solid var(--global-dark-border-color);
+  border-radius: 999px;
+  font-size: 0.82em;
+  text-decoration: none !important;
+  color: var(--global-text-color) !important;
+  white-space: nowrap;
+
+  &:hover {
+    border-color: var(--global-base-color);
+    color: var(--global-base-color) !important;
+  }
+}
+
+/* ---- STAR sections ------------------------------------------------------ */
+.star-h {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 1.6em 0 0.5em;
+  padding-bottom: 0.25em;
+  border-bottom: 1px solid var(--global-border-color);
+  font-size: 1.2em;
+}
+
+.star-tag {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  background: var(--global-base-color);
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.sec-h {
+  margin: 1.6em 0 0.5em;
+  padding-bottom: 0.25em;
+  border-bottom: 1px solid var(--global-border-color);
+  font-size: 1.2em;
+}
+
+.proj-body {
+  line-height: 1.65;
+
+  ul {
+    padding-left: 1.2em;
+  }
+
+  li {
+    margin: 0.3em 0;
+  }
+}
+
+/* ---- Figures ------------------------------------------------------------ */
+.pfig {
+  margin: 1.2em 0 1.4em;
+  text-align: center;
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 4px;
+    border: 1px solid var(--global-border-color);
+    background: #fff;
+  }
+
+  figcaption {
+    margin-top: 0.5em;
+    font-size: 0.8em;
+    line-height: 1.5;
+    text-align: left;
+    color: var(--global-fig-caption-color);
+  }
+}
+
+.pfig--narrow img {
+  max-width: 70%;
+}
+
+/* ---- Videos ------------------------------------------------------------- */
+.vgrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9em;
+  margin: 1em 0 1.4em;
+}
+
+.pvid {
+  margin: 0;
+
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    background: #000;
+  }
+
+  figcaption {
+    margin-top: 0.35em;
+    font-size: 0.78em;
+    line-height: 1.45;
+    color: var(--global-fig-caption-color);
+  }
+
+  .pvid__label {
+    display: block;
+    font-weight: bold;
+    color: var(--global-text-color);
+  }
+}
+
+/* ---- Stat tiles --------------------------------------------------------- */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75em;
+  margin: 1em 0 1.2em;
+}
+
+.kpi {
+  padding: 0.75em 0.9em;
+  border: 1px solid var(--global-border-color);
+  border-radius: 6px;
+  background: rgba(127, 127, 127, 0.08); /* works in light and dark themes */
+
+  .kpi__value {
+    display: block;
+    font-size: 1.15em;
+    font-weight: bold;
+    line-height: 1.3;
+    color: var(--global-base-color);
+  }
+
+  .kpi__label {
+    display: block;
+    margin-top: 0.2em;
+    font-size: 0.78em;
+    line-height: 1.4;
+    color: var(--global-text-color);
+  }
+}
+
+/* ---- Tables ------------------------------------------------------------- */
+.table-wrap {
+  width: 100%;
+  margin: 0.6em 0 0.4em;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  table {
+    display: table;
+    width: 100%;
+    margin: 0;
+    font-size: 0.8em;
+  }
+
+  th,
+  td {
+    padding: 0.35em 0.5em;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  td:first-child,
+  th:first-child {
+    text-align: left;
+  }
+
+  tr.ours td {
+    background: rgba(47, 127, 147, 0.12);
+  }
+
+  tr.ours td:first-child {
+    font-weight: bold;
+  }
+
+  tr.group td {
+    font-style: italic;
+    color: var(--global-text-color-light);
+  }
+}
+
+.table-caption {
+  margin: 1.2em 0 0.2em;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+.table-note,
+.pnote {
+  margin: 0.3em 0 1em;
+  font-size: 0.8em;
+  line-height: 1.55;
+  color: var(--global-fig-caption-color);
+}
+
+/* ---- Horizontal bar chart (pure HTML/CSS) ------------------------------- */
+.hbars {
+  margin: 1em 0 0.4em;
+}
+
+.hbar {
+  display: grid;
+  grid-template-columns: minmax(0, 13em) minmax(0, 1fr);
+  gap: 0.6em;
+  align-items: center;
+  margin: 0.45em 0;
+  font-size: 0.82em;
+}
+
+.hbar__label {
+  line-height: 1.3;
+}
+
+.hbar__track {
+  position: relative;
+  height: 1.5em;
+  border-radius: 4px;
+  background: rgba(127, 127, 127, 0.16);
+}
+
+.hbar__fill {
+  height: 100%;
+  border-radius: 4px;
+  background: #d9622b;
+}
+
+.hbar__fill--good {
+  background: #2a78d6;
+}
+
+.hbar__fill--placebo {
+  background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.6) 0, rgba(255, 255, 255, 0.6) 3px, transparent 3px, transparent 7px);
+}
+
+.hbar__val {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-left: 0.4em;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* ---- BibTeX ------------------------------------------------------------- */
+.bibtex {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.75em;
+}
+
+/* ---- Specificity: the theme sets `.page__content p { font-size: 1em }` -- */
+.page__content {
+  p.table-caption {
+    margin: 1.2em 0 0.2em;
+    font-size: 0.85em;
+  }
+
+  p.table-note,
+  p.pnote {
+    margin: 0.3em 0 1em;
+    font-size: 0.8em;
+  }
+
+  .pub-meta p {
+    margin: 0.25em 0;
+  }
+
+  p.pub-meta__title {
+    font-size: 1.05em;
+  }
+
+  p.pub-meta__affs,
+  p.pub-meta__notes {
+    font-size: 0.82em;
+  }
+
+  .tldr li,
+  .proj-body li {
+    font-size: 1em;
+  }
+}
+
+/* ---- Small screens ------------------------------------------------------ */
+@media (max-width: 600px) {
+  .vgrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pfig--narrow img {
+    max-width: 100%;
+  }
+
+  .hbar {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.2em;
+  }
+
+  .pub-meta {
+    text-align: left;
+  }
+
+  .pub-meta__affs span,
+  .pub-meta__notes span {
+    display: block;
+    margin: 0.1em 0;
+  }
+}

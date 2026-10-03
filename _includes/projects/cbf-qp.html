@@ -1,0 +1,166 @@
+{% comment %}
+  Shared content for Route-Guided CBF-QP Repair.
+  Used by _publications/2026-route-guided-cbf-qp.md and _portfolio/02-route-guided-cbf-qp.md.
+  The page itself includes lang-toggle.html (once); this include must not.
+{% endcomment %}{% assign cbf_doc = site.publications | where: "pub_id", "cbfqp" | first %}
+{% include tldr.html doc=cbf_doc %}
+
+{% include pub-meta.html doc=cbf_doc %}
+
+<div class="proj-body">
+
+<div class="kpis">
+<div class="kpi"><span class="kpi__value">64.7% &rarr; 69.1%</span><span class="kpi__label lang-en">collision avoidance rate (average of 4 suites, vs. AEGIS)</span><span class="kpi__label lang-ko" lang="ko">충돌 회피율 (4개 스위트 평균, AEGIS 대비)</span></div>
+<div class="kpi"><span class="kpi__value">62.8% &rarr; 65.0%</span><span class="kpi__label lang-en">task success rate (average)</span><span class="kpi__label lang-ko" lang="ko">작업 성공률 (평균)</span></div>
+<div class="kpi"><span class="kpi__value">47.2% &rarr; 49.7%</span><span class="kpi__label lang-en">SafeSuccess: task done without any collision (average)</span><span class="kpi__label lang-ko" lang="ko">SafeSuccess: 충돌 없이 작업 완료 (평균)</span></div>
+<div class="kpi"><span class="kpi__value">56.3% &rarr; 76.3%</span><span class="kpi__label lang-en">collision avoidance on the Object suite (largest gain)</span><span class="kpi__label lang-ko" lang="ko">Object 스위트 충돌 회피율 (가장 큰 향상)</span></div>
+</div>
+
+<div class="lang-en">
+<h2 class="star-h"><span class="star-tag">S</span>Situation</h2>
+<p>Vision-language-action (VLA) models such as π<sub>0.5</sub> look at camera images, read an instruction like <em>“pick up the chocolate pudding and place it in the basket”</em>, and output robot arm motions. They are good at the task itself, but nothing in their training tells them to stay away from obstacles: a motion that heads straight for the target can sweep right through a wine bottle on the way.</p>
+<p>A popular fix is to bolt a safety filter onto the policy. <strong>AEGIS</strong> solves a small optimization problem (a CBF-QP: control barrier function + quadratic program) at every step, picking the action closest to the VLA's action that still satisfies a hard “do not enter the obstacle” constraint. That stops the immediate collision, but it only pushes the arm <em>away</em> from the obstacle. It never decides how to go <em>around</em> it or how to get back on the task path, so the arm can hover at the obstacle boundary, drift into states the VLA has never seen, and still collide or fail.</p>
+</div>
+<div class="lang-ko" lang="ko">
+<h2 class="star-h"><span class="star-tag">S</span>상황 (Situation)</h2>
+<p>π<sub>0.5</sub> 같은 VLA(Vision-Language-Action) 모델은 카메라 영상을 보고 <em>“초콜릿 푸딩을 집어 바구니에 넣어라”</em> 같은 지시를 읽은 뒤 로봇 팔의 동작을 출력합니다. 작업 자체는 잘 하지만, 학습 과정 어디에도 “장애물을 피하라”는 신호가 없습니다. 그래서 목표 물체로 곧장 향하는 동작이 도중에 있는 와인병을 그대로 쓸고 지나갈 수 있습니다.</p>
+<p>흔히 쓰는 해결책은 정책 뒤에 안전 필터를 붙이는 것입니다. <strong>AEGIS</strong>는 매 스텝 작은 최적화 문제(CBF-QP: 제어 장벽 함수 + 이차 계획법)를 풀어, “장애물 안으로 들어가지 말 것”이라는 하드 제약을 만족하면서 VLA 동작과 가장 가까운 동작을 고릅니다. 당장의 충돌은 막지만, 팔을 장애물에서 <em>밀어낼</em> 뿐 장애물을 <em>어떻게 돌아갈지</em>, 작업 경로로 <em>어떻게 돌아올지</em>는 정해 주지 않습니다. 그 결과 팔이 장애물 경계에서 맴돌거나 VLA가 본 적 없는 상태로 흘러가 결국 충돌하거나 실패할 수 있습니다.</p>
+</div>
+
+<div class="lang-en">
+<h2 class="star-h"><span class="star-tag">T</span>Task</h2>
+<p>Keep the hard safety guarantee of the CBF-QP filter, but give the robot a <strong>recoverable route</strong>: go around the obstacle and rejoin the task trajectory. It must be post-hoc and plug-in, with the VLA's weights untouched and no retraining.</p>
+</div>
+<div class="lang-ko" lang="ko">
+<h2 class="star-h"><span class="star-tag">T</span>과제 (Task)</h2>
+<p>CBF-QP 필터의 하드 안전 보장은 그대로 두면서, 로봇에게 <strong>복귀 가능한 경로</strong>, 즉 장애물을 돌아 작업 궤적으로 다시 합류하는 경로를 제공한다. VLA 가중치는 건드리지 않고 재학습 없이 사후(post-hoc) 플러그인으로 동작해야 한다.</p>
+</div>
+
+<figure class="pfig">
+<img src="{{ site.baseurl }}/images/detail/cbfqp/fig1_overview.jpg" alt="Overview: the VLA action chunk is checked for a blocked path, route candidates with entry, exit and rejoin waypoints are generated, and the selected route is added to the CBF-QP objective" loading="lazy">
+<figcaption><span class="lang-en"><strong>Fig. 1.</strong> Route-Guided CBF-QP Repair. The VLA's action chunk gives a predicted path; if it passes through an obstacle's (ellipsoidal) unsafe region, left/right routes with entry, exit and rejoin waypoints are generated and scored, and the chosen route enters the CBF-QP objective as soft guidance. The CBF constraint stays hard.</span><span class="lang-ko" lang="ko"><strong>그림 1.</strong> Route-Guided CBF-QP Repair 개요. VLA의 액션 청크로 앞으로의 경로를 예측하고, 그 경로가 장애물의 (타원체) 위험 영역을 지나면 진입·이탈·재합류 웨이포인트로 이루어진 좌/우 경로 후보를 만들어 점수를 매깁니다. 선택된 경로는 CBF-QP 목적함수에 소프트 가이던스로 들어가고, CBF 제약은 하드로 유지됩니다.</span></figcaption>
+</figure>
+
+<div class="lang-en">
+<h2 class="star-h"><span class="star-tag">A</span>Action</h2>
+<p>As first author, I designed the repair module and the ablation study that isolates route scoring and rejoin guidance.</p>
+<ul>
+<li><strong>1. Detect a blocked path.</strong> The VLA predicts a short chunk of future actions. Adding up their displacements gives the path the arm is about to take. Each obstacle is modeled as an inflated ellipsoid, and the path counts as blocked if any predicted point falls inside it.</li>
+<li><strong>2. Generate and score routes.</strong> For a blocked path, two candidate routes (left and right) are built from three waypoints: <em>entry</em>, <em>exit</em> and <em>rejoin</em>. Each route is scored by obstacle clearance and progress along the VLA's path, minus detour length and deviation from the VLA's path (fixed weights in all experiments).</li>
+<li><strong>3. Route-guided CBF-QP.</strong> The QP keeps its usual goal (stay close to the VLA's action) and its hard CBF safety constraint, and gains one soft term that pulls the arm toward the active route waypoint. The term is switched on only while the path is blocked; otherwise the solver is exactly the standard CBF-QP.</li>
+<li><strong>4. Rejoin.</strong> The arm visits entry, then exit, then rejoin; when it reaches the rejoin point, guidance turns off and normal VLA execution resumes.</li>
+<li><strong>Fair comparison.</strong> AEGIS and our method use the same π<sub>0.5</sub> VLA backbone and weights, so the difference isolates route guidance. SafeLIBERO: 4 suites (Spatial, Goal, Object, Long), 10 episodes per task.</li>
+</ul>
+</div>
+<div class="lang-ko" lang="ko">
+<h2 class="star-h"><span class="star-tag">A</span>행동 (Action)</h2>
+<p>제1저자로서 복구(repair) 모듈과, 경로 점수화와 재합류 가이던스의 효과를 분리해 보는 제거 실험(ablation)을 설계했습니다.</p>
+<ul>
+<li><strong>1. 막힌 경로 감지.</strong> VLA는 앞으로 몇 스텝의 동작 묶음(액션 청크)을 예측합니다. 이 변위를 누적하면 팔이 곧 지나갈 경로가 나옵니다. 각 장애물은 여유를 둔 타원체로 모델링하고, 예측 경로의 한 점이라도 그 안에 들어가면 “막힌 경로”로 판단합니다.</li>
+<li><strong>2. 경로 후보 생성과 점수화.</strong> 막힌 경우 <em>진입(entry)</em>·<em>이탈(exit)</em>·<em>재합류(rejoin)</em> 세 웨이포인트로 이루어진 좌/우 두 경로 후보를 만듭니다. 장애물과의 여유 거리와 VLA 경로를 따라 나아가는 정도는 가점, 우회 길이와 VLA 경로에서 벗어난 정도는 감점으로 점수를 매깁니다(모든 실험에서 가중치 고정).</li>
+<li><strong>3. 경로 유도 CBF-QP.</strong> QP는 원래 목표(VLA 동작과 가깝게)와 하드 CBF 안전 제약을 그대로 유지하고, 팔을 현재 경로 웨이포인트 쪽으로 당기는 소프트 항 하나만 추가합니다. 이 항은 경로가 막혔을 때만 켜지고, 그 외에는 표준 CBF-QP와 완전히 같습니다.</li>
+<li><strong>4. 재합류.</strong> 팔은 진입 → 이탈 → 재합류 지점을 차례로 지나고, 재합류 지점에 도달하면 가이던스를 끄고 일반 VLA 실행으로 돌아갑니다.</li>
+<li><strong>공정한 비교.</strong> AEGIS와 제안 방법은 같은 π<sub>0.5</sub> VLA 백본과 가중치를 쓰므로, 성능 차이는 경로 가이던스의 효과만을 반영합니다. SafeLIBERO 4개 스위트(Spatial, Goal, Object, Long), 작업당 10 에피소드로 평가했습니다.</li>
+</ul>
+</div>
+
+<div class="lang-en">
+<p class="pnote">Internship context (LG Electronics Toronto AI Lab, Jan.–Aug. 2026): around this paper I also built a MuJoCo / RoboCasa simulation pipeline for a Franka arm with safe and unsafe scenes, collected VR-teleoperated demonstrations and expanded them with MimicGen, and LoRA fine-tuned VLA backbones (OpenVLA, π<sub>0.5</sub>, DreamVLA, DD-VLA) with multi-GPU distributed training on a Slurm HPC cluster. This work was done during a graduate visiting studentship at the University of Toronto through the CARTE program, in partnership with LG Electronics Toronto AI Lab.</p>
+</div>
+<div class="lang-ko" lang="ko">
+<p class="pnote">인턴십 맥락 (LG전자 토론토 AI 연구소, 2026년 1월–8월): 이 논문과 함께 Franka 로봇 팔용 MuJoCo / RoboCasa 시뮬레이션 파이프라인(안전/위험 장면)을 구축하고, VR 원격조작으로 시연 데이터를 모은 뒤 MimicGen으로 확장했으며, Slurm HPC 클러스터에서 멀티 GPU 분산 학습으로 VLA 백본(OpenVLA, π<sub>0.5</sub>, DreamVLA, DD-VLA)을 LoRA 미세조정했습니다. 이 연구는 토론토 대학교 CARTE 프로그램의 대학원 방문 연구 과정에서 LG전자 토론토 AI 연구소와의 협력으로 수행되었습니다.</p>
+</div>
+
+<h2 class="sec-h"><span class="lang-en">Rollouts: AEGIS vs. route guidance</span><span class="lang-ko" lang="ko">롤아웃 비교: AEGIS vs. 경로 가이던스</span></h2>
+<p class="pnote"><span class="lang-en">Same task, same obstacle, same π<sub>0.5</sub> policy. Selected examples where AEGIS collides and route guidance completes the task without collision.</span><span class="lang-ko" lang="ko">같은 작업, 같은 장애물, 같은 π<sub>0.5</sub> 정책입니다. AEGIS는 충돌하고 경로 가이던스는 충돌 없이 작업을 끝낸 사례를 골랐습니다.</span></p>
+<div class="vgrid">
+<figure class="pvid">
+<video autoplay muted loop playsinline preload="metadata" poster="{{ site.baseurl }}/images/detail/cbfqp/cbfqp_case04_aegis_poster.jpg"><source src="{{ site.baseurl }}/files/videos/cbfqp_case04_aegis.mp4" type="video/mp4"></video>
+<figcaption><span class="pvid__label">AEGIS</span><span class="lang-en">Object suite: “pick up the chocolate pudding and place it in the basket” (wine-bottle obstacle). Task succeeds, but with a collision.</span><span class="lang-ko" lang="ko">Object 스위트: “초콜릿 푸딩을 집어 바구니에 넣어라”(장애물: 와인병). 작업은 성공했지만 충돌이 발생했습니다.</span></figcaption>
+</figure>
+<figure class="pvid">
+<video autoplay muted loop playsinline preload="metadata" poster="{{ site.baseurl }}/images/detail/cbfqp/cbfqp_case04_bypass_poster.jpg"><source src="{{ site.baseurl }}/files/videos/cbfqp_case04_bypass.mp4" type="video/mp4"></video>
+<figcaption><span class="pvid__label lang-en">Route-Guided CBF-QP Repair (ours)</span><span class="pvid__label lang-ko" lang="ko">Route-Guided CBF-QP Repair (제안 방법)</span><span class="lang-en">Same episode: the arm bypasses the bottle and rejoins the task path. SafeSuccess.</span><span class="lang-ko" lang="ko">같은 에피소드: 팔이 병을 돌아간 뒤 작업 경로로 재합류합니다. SafeSuccess.</span></figcaption>
+</figure>
+<figure class="pvid">
+<video autoplay muted loop playsinline preload="metadata" poster="{{ site.baseurl }}/images/detail/cbfqp/cbfqp_case08_aegis_poster.jpg"><source src="{{ site.baseurl }}/files/videos/cbfqp_case08_aegis.mp4" type="video/mp4"></video>
+<figcaption><span class="pvid__label">AEGIS</span><span class="lang-en">Spatial suite: “pick up the black bowl on the ramekin and place it on the plate” (milk-carton obstacle). Collision and task failure.</span><span class="lang-ko" lang="ko">Spatial 스위트: “라메킨 위의 검은 그릇을 집어 접시에 놓아라”(장애물: 우유팩). 충돌과 함께 작업에 실패했습니다.</span></figcaption>
+</figure>
+<figure class="pvid">
+<video autoplay muted loop playsinline preload="metadata" poster="{{ site.baseurl }}/images/detail/cbfqp/cbfqp_case08_bypass_poster.jpg"><source src="{{ site.baseurl }}/files/videos/cbfqp_case08_bypass.mp4" type="video/mp4"></video>
+<figcaption><span class="pvid__label lang-en">Route-Guided CBF-QP Repair (ours)</span><span class="pvid__label lang-ko" lang="ko">Route-Guided CBF-QP Repair (제안 방법)</span><span class="lang-en">Same episode: collision-free task completion. SafeSuccess.</span><span class="lang-ko" lang="ko">같은 에피소드: 충돌 없이 작업 완료. SafeSuccess.</span></figcaption>
+</figure>
+</div>
+
+<figure class="pfig">
+<img src="{{ site.baseurl }}/images/detail/cbfqp/fig2_qualitative.jpg" alt="Seven frames of the same episode: AEGIS (top) collides with the wine bottle in frames 5 to 7; route guidance (bottom) goes around it" loading="lazy">
+<figcaption><span class="lang-en"><strong>Fig. 2.</strong> Top: AEGIS stays near the blocked region and collides in frames 5–7 while completing the task. Bottom: route guidance leaves the blocked path, bypasses the obstacle and returns toward the task trajectory.</span><span class="lang-ko" lang="ko"><strong>그림 2.</strong> 위: AEGIS는 막힌 영역 근처에 머물다 5–7번 프레임에서 충돌한 채 작업을 마칩니다. 아래: 경로 가이던스는 막힌 경로를 벗어나 장애물을 돌아간 뒤 작업 궤적으로 돌아옵니다.</span></figcaption>
+</figure>
+
+<div class="lang-en">
+<h2 class="star-h"><span class="star-tag">R</span>Result</h2>
+<ul>
+<li>Averaged over the 4 SafeLIBERO suites, route guidance improves on AEGIS in all three success metrics: collision avoidance <strong>64.69% &rarr; 69.06%</strong>, task success <strong>62.81% &rarr; 65.00%</strong>, SafeSuccess <strong>47.19% &rarr; 49.69%</strong>.</li>
+<li>The largest gain is on the Object suite, where obstacle avoidance has to be coordinated with object-centric manipulation: collision avoidance <strong>56.25% &rarr; 76.25%</strong>, task success 67.50% &rarr; 72.50%, SafeSuccess 41.25% &rarr; 55.00%.</li>
+<li>The ablation shows both ideas matter: without rejoin guidance SafeSuccess drops to 47.92%, and without route scoring to 48.15% (full model 49.69%). Bypassing alone is not enough if the arm is not guided back to the task.</li>
+<li>The cost is a longer path: average execution steps rise from 109.87 to 118.45, the extra steps spent on bypass and rejoin.</li>
+<li>Accepted as a first-author paper at the RSS 2026 Workshop on Trustworthy Embodied Foundation Models.</li>
+</ul>
+</div>
+<div class="lang-ko" lang="ko">
+<h2 class="star-h"><span class="star-tag">R</span>결과 (Result)</h2>
+<ul>
+<li>SafeLIBERO 4개 스위트 평균에서 세 가지 성공 지표 모두 AEGIS보다 높았습니다: 충돌 회피율 <strong>64.69% &rarr; 69.06%</strong>, 작업 성공률 <strong>62.81% &rarr; 65.00%</strong>, SafeSuccess <strong>47.19% &rarr; 49.69%</strong>.</li>
+<li>가장 큰 향상은 장애물 회피와 물체 조작을 함께 조율해야 하는 Object 스위트에서 나왔습니다: 충돌 회피율 <strong>56.25% &rarr; 76.25%</strong>, 작업 성공률 67.50% &rarr; 72.50%, SafeSuccess 41.25% &rarr; 55.00%.</li>
+<li>제거 실험에서 두 아이디어가 모두 필요함을 확인했습니다. 재합류 가이던스를 빼면 SafeSuccess가 47.92%로, 경로 점수화를 빼면 48.15%로 떨어집니다(전체 모델 49.69%). 장애물을 돌아가는 것만으로는 부족하고, 작업 경로로 다시 이끌어 주어야 합니다.</li>
+<li>대가는 경로 길이입니다. 평균 실행 스텝이 109.87에서 118.45로 늘었고, 이는 우회와 재합류에 쓰인 스텝입니다.</li>
+<li>RSS 2026 Workshop on Trustworthy Embodied Foundation Models에 제1저자 논문으로 채택되었습니다.</li>
+</ul>
+</div>
+
+<p class="table-caption"><span class="lang-en">Table I. SafeLIBERO results (same π<sub>0.5</sub> backbone)</span><span class="lang-ko" lang="ko">표 I. SafeLIBERO 결과 (동일한 π<sub>0.5</sub> 백본)</span></p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Method</th><th>Metric</th><th>Spatial</th><th>Goal</th><th>Object</th><th>Long</th><th>Average</th></tr>
+</thead>
+<tbody>
+<tr><td>AEGIS</td><td>CAR (%) &uarr;</td><td>63.75</td><td><strong>83.75</strong></td><td>56.25</td><td><strong>55.00</strong></td><td>64.69</td></tr>
+<tr><td>AEGIS</td><td>TSR (%) &uarr;</td><td>60.00</td><td><strong>85.00</strong></td><td>67.50</td><td>38.75</td><td>62.81</td></tr>
+<tr><td>AEGIS</td><td>SafeSuccess (%) &uarr;</td><td>52.50</td><td><strong>73.75</strong></td><td>41.25</td><td>21.25</td><td>47.19</td></tr>
+<tr><td>AEGIS</td><td>ETS &darr;</td><td><strong>85.61</strong></td><td><strong>104.33</strong></td><td>67.68</td><td><strong>181.85</strong></td><td><strong>109.87</strong></td></tr>
+<tr class="ours"><td>Ours</td><td>CAR (%) &uarr;</td><td><strong>66.25</strong></td><td>81.25</td><td><strong>76.25</strong></td><td>52.50</td><td><strong>69.06</strong></td></tr>
+<tr class="ours"><td>Ours</td><td>TSR (%) &uarr;</td><td><strong>65.00</strong></td><td>80.00</td><td><strong>72.50</strong></td><td><strong>42.50</strong></td><td><strong>65.00</strong></td></tr>
+<tr class="ours"><td>Ours</td><td>SafeSuccess (%) &uarr;</td><td><strong>53.75</strong></td><td>67.50</td><td><strong>55.00</strong></td><td><strong>22.50</strong></td><td><strong>49.69</strong></td></tr>
+<tr class="ours"><td>Ours</td><td>ETS &darr;</td><td>91.20</td><td>129.50</td><td><strong>65.10</strong></td><td>188.00</td><td>118.45</td></tr>
+</tbody>
+</table>
+</div>
+<p class="table-note"><span class="lang-en">CAR: collision avoidance rate; TSR: task success rate; SafeSuccess: task completed without collision; ETS: execution time steps. Bold marks the better of the two methods in each column (values from the paper's Table I). Ours is better on the averages of CAR, TSR and SafeSuccess; AEGIS is better on the Goal suite and on Long-suite CAR, and uses fewer steps on average.</span><span class="lang-ko" lang="ko">CAR: 충돌 회피율, TSR: 작업 성공률, SafeSuccess: 충돌 없는 작업 완료, ETS: 실행 스텝 수. 굵은 글씨는 각 열에서 두 방법 중 더 나은 값입니다(수치는 논문 표 I). 제안 방법은 CAR·TSR·SafeSuccess 평균에서 앞서고, AEGIS는 Goal 스위트와 Long 스위트 CAR에서 앞서며 평균 스텝 수가 더 적습니다.</span></p>
+
+<p class="table-caption"><span class="lang-en">Table II. Ablation (averages over the 4 suites)</span><span class="lang-ko" lang="ko">표 II. 제거 실험 (4개 스위트 평균)</span></p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Path</th><th>Gate</th><th>Score</th><th>Rejoin</th><th>CAR (%)</th><th>TSR (%)</th><th>SafeSucc. (%)</th><th>ETS</th></tr>
+</thead>
+<tbody>
+<tr><td>&times;</td><td>&times;</td><td>&times;</td><td>&times;</td><td>64.69</td><td>62.81</td><td>47.19</td><td><strong>109.87</strong></td></tr>
+<tr><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&times;</td><td>67.12</td><td>63.95</td><td>47.92</td><td>112.50</td></tr>
+<tr><td>&#10003;</td><td>&#10003;</td><td>&times;</td><td>&#10003;</td><td>65.88</td><td>63.10</td><td>48.15</td><td>114.12</td></tr>
+<tr class="ours"><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td><strong>69.06</strong></td><td><strong>65.00</strong></td><td><strong>49.69</strong></td><td>118.45</td></tr>
+</tbody>
+</table>
+</div>
+<p class="table-note"><span class="lang-en">Row 1 is local CBF-QP repair (AEGIS) without blocked-path detection, route scoring or rejoin. The full model (last row) has the best average CAR, TSR and SafeSuccess.</span><span class="lang-ko" lang="ko">1행은 막힌 경로 감지·경로 점수화·재합류가 없는 국소 CBF-QP 복구(AEGIS)입니다. 전체 모델(마지막 행)이 CAR·TSR·SafeSuccess 평균에서 가장 높습니다.</span></p>
+
+<h2 class="sec-h">BibTeX</h2>
+{% raw %}<pre class="bibtex">@inproceedings{park2026routeguided,
+  title     = {Route-Guided {CBF-QP} Repair for Safe Vision-Language-Action Models},
+  author    = {Park, Chan and Hong, Sunwoo and Kim, Kirak and Park, Yoonjeong
+               and Olson, Alexander W. and Pesaranghader, Ali},
+  booktitle = {RSS 2026 Workshop on Trustworthy Embodied Foundation Models},
+  year      = {2026}
+}</pre>{% endraw %}
+
+</div>

@@ -11,23 +11,11 @@ author_profile: true
   <div class="wordwrap">You can also find my articles on <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.</div>
 {% endif %}
 
+<p class="pub-legend">Highlighted: first-author papers. * equal contribution.</p>
+
 {% assign pubs = site.publications | sort: "order" %}
-
-<h2 class="pub-section">Peer-reviewed</h2>
 <div class="pub-list">
 {% for pub in pubs %}
-  {% if pub.status == nil or pub.status == "" %}
-    {% include pub-row.html pub=pub %}
-  {% endif %}
-{% endfor %}
-</div>
-<p class="pub-legend">* equal contribution. Highlighted rows are first- or co-first-author papers.</p>
-
-<h2 class="pub-section">Manuscripts (not yet peer-reviewed)</h2>
-<div class="pub-list">
-{% for pub in pubs %}
-  {% if pub.status and pub.status != "" %}
-    {% include pub-row.html pub=pub %}
-  {% endif %}
+  {% include pub-row.html pub=pub %}
 {% endfor %}
 </div>
