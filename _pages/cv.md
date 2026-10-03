@@ -33,8 +33,8 @@ Experience
 Projects
 ======
 * **Driving VLA: Unobservable Claims in Language-Conditioned Driving** — Independent research (SimLingo / CARLA), Sep. 2026 – Present
-  * Identified camera-unobservable causes in 5.48% of cause-bearing records (up to 38.1% for signalized-junction right turns) by auditing all 2,085,459 auto-generated commentary records.
-  * Showed commentary acts as a control input (open-loop): swapping only the cause clause shifted predicted speed by +0.85 m/s (95% CI [0.69, 1.02]); deleting unsupported sentences lost caution in 40.7% of hidden-hazard braking frames vs. 2.5% for hedging.
+  * Audited all 2,085,459 auto-generated commentary records: 5.48% of cause-bearing records cite a cause that the generator's own LiDAR visibility flag marks as not visible (up to 38.1% in signalized-junction right turns).
+  * Showed commentary acts as a control input (open-loop, one scenario type): swapping only the cause clause shifted predicted speed by +0.85 m/s (95% CI [0.69, 1.02]); deleting unsupported sentences lost caution in 40.7% of hidden-hazard braking frames vs. 2.5% for hedging.
   * Built CARLA / Bench2Drive closed-loop evaluation infrastructure with CHAIR scoring; results pending.
 * **LLM Agent Research Pipeline with Cross-Model Review** — Personal project, Sep. 2026
   * Built a Python cross-model-family reviewer harness on the open-source [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) skill pack for Claude Code: multi-model fallback with back-off, provenance headers, and Codex CLI as second reviewer.
