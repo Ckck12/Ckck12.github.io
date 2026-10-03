@@ -1,11 +1,24 @@
 # The following is the order of the links in the header of the website.
+# title = English label; title_ko / title_zh = Korean / Simplified Chinese labels
+# (shown by the site language switch in _includes/masthead.html).
 
 main:
   - title: "Publications"
+    title_ko: "논문"
+    title_zh: "论文"
     url: /publications/
 
   - title: "Projects"
+    title_ko: "프로젝트"
+    title_zh: "项目"
     url: /portfolio/
 
+  - title: "Blog"
+    title_ko: "블로그"
+    title_zh: "博客"
+    url: /blog/
+
   - title: "CV"
+    title_ko: "이력서"
+    title_zh: "简历"
     url: /cv/

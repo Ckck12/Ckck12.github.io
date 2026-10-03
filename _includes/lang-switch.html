@@ -1,0 +1,87 @@
+{% comment %}
+  Site-wide language switch (English / Korean / Simplified Chinese).
+  Included in <head> by head/custom.html so <html data-lang> is set before the body renders (no flash).
+  Priority: ?lang=en|ko|zh in the URL, then localStorage "cp-site-lang", then English.
+  The buttons live in masthead.html ([data-lang-set]); CSS in _sass/layout/_project.scss.
+  Labels change width on a switch, so renav() makes the greedy nav (jquery.greedy-navigation.js) re-measure:
+  it widens the nav so every link comes back, then restores the width and the menu button (the state of a fresh
+  page load) so links that no longer fit move to the menu. Both steps run synchronously, so nothing is painted in between.
+  compress_html joins all lines in production, so the script must not contain line comments,
+  and it avoids the less-than sign and the double ampersand.
+{% endcomment %}<script>
+(function () {
+  var KEY = "cp-site-lang";
+  var HTML_LANG = { en: "en", ko: "ko", zh: "zh-Hans" };
+  var root = document.documentElement;
+  function valid(v) { return v === "en" || v === "ko" || v === "zh"; }
+  function fromUrl() {
+    try {
+      var v = new URLSearchParams(window.location.search).get("lang");
+      v = v ? String(v).toLowerCase() : "";
+      return valid(v) ? v : "";
+    } catch (e) { return ""; }
+  }
+  function fromStore() {
+    try {
+      var v = window.localStorage.getItem(KEY);
+      return valid(v) ? v : "";
+    } catch (e) { return ""; }
+  }
+  function save(v) {
+    try { window.localStorage.setItem(KEY, v); } catch (e) { }
+  }
+  function syncButtons(v) {
+    var btns = document.querySelectorAll("[data-lang-set]");
+    Array.prototype.forEach.call(btns, function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-lang-set") === v ? "true" : "false");
+    });
+  }
+  function apply(v) {
+    root.setAttribute("data-lang", v);
+    root.setAttribute("lang", HTML_LANG[v]);
+    syncButtons(v);
+  }
+  function syncUrl(v) {
+    try {
+      if (!window.history.replaceState) { return; }
+      var u = new URL(window.location.href);
+      if (u.searchParams.has("lang")) {
+        u.searchParams.set("lang", v);
+        window.history.replaceState(null, "", u.toString());
+      }
+    } catch (e) { }
+  }
+  var lang = fromUrl();
+  if (lang) { save(lang); } else { lang = fromStore() || "en"; }
+  apply(lang);
+  function renav() {
+    var nav = document.getElementById("site-nav");
+    if (!nav) { return; }
+    try {
+      nav.style.flex = "0 0 100000px";
+      window.dispatchEvent(new Event("resize"));
+      nav.style.flex = "";
+      var b = nav.querySelector("button");
+      if (b) { b.classList.remove("hidden"); }
+      window.dispatchEvent(new Event("resize"));
+    } catch (e) { nav.style.flex = ""; }
+  }
+  window.cpSetLang = function (v) {
+    if (!valid(v)) { return; }
+    apply(v);
+    save(v);
+    syncUrl(v);
+    renav();
+  };
+  document.addEventListener("click", function (ev) {
+    var t = ev.target;
+    var b = (t ? t.closest : null) ? t.closest("[data-lang-set]") : null;
+    if (!b) { return; }
+    ev.preventDefault();
+    window.cpSetLang(b.getAttribute("data-lang-set"));
+  });
+  document.addEventListener("DOMContentLoaded", function () {
+    syncButtons(root.getAttribute("data-lang") || "en");
+  });
+})();
+</script>

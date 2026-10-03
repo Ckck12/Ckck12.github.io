@@ -1,6 +1,8 @@
 ---
 layout: archive
 title: "Publications"
+title_ko: "논문"
+title_zh: "论文"
 permalink: /publications/
 author_profile: true
 ---
@@ -8,10 +10,10 @@ author_profile: true
 {% include base_path %}
 
 {% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.</div>
+  <div class="wordwrap"><span class="lang-en">You can also find my articles on <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.</span><span class="lang-ko" lang="ko">전체 논문은 <a href="{{ site.author.googlescholar }}">Google Scholar 프로필</a>에서도 볼 수 있습니다.</span><span class="lang-zh" lang="zh-Hans">全部论文也可在我的 <a href="{{ site.author.googlescholar }}">Google Scholar 主页</a>查看。</span></div>
 {% endif %}
 
-<p class="pub-legend">Highlighted: first-author papers. * equal contribution.</p>
+<p class="pub-legend"><span class="lang-en">Highlighted: first-author papers. * equal contribution.</span><span class="lang-ko" lang="ko">강조 표시: 제1저자 논문. * 동등 기여.</span><span class="lang-zh" lang="zh-Hans">高亮：第一作者论文。* 同等贡献。</span></p>
 
 {% assign pubs = site.publications | sort: "order" %}
 <div class="pub-list">

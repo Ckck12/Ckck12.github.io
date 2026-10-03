@@ -1,14 +1,18 @@
 {% comment %}
-  Three-line TL;DR box in English and Korean.
-  Usage: {% include tldr.html %} (reads page.tldr_en / page.tldr_ko)
+  Three-line TL;DR box in English, Korean and Simplified Chinese.
+  Usage: {% include tldr.html %} (reads page.tldr_en / page.tldr_ko / page.tldr_zh)
      or: {% include tldr.html doc=some_doc %}
-{% endcomment %}{% if include.doc %}{% assign tl_doc = include.doc %}{% else %}{% assign tl_doc = page %}{% endif %}
+  A missing tldr_ko / tldr_zh falls back to tldr_en.
+{% endcomment %}{% if include.doc %}{% assign tl_doc = include.doc %}{% else %}{% assign tl_doc = page %}{% endif %}{% assign tl_en = tl_doc.tldr_en %}{% assign tl_ko = tl_doc.tldr_ko | default: tl_doc.tldr_en %}{% assign tl_zh = tl_doc.tldr_zh | default: tl_doc.tldr_en %}
 <div class="tldr">
 <span class="tldr__label">TL;DR</span>
 <ul class="lang-en">
-{% for tl_line in tl_doc.tldr_en %}<li>{{ tl_line }}</li>
+{% for tl_line in tl_en %}<li>{{ tl_line }}</li>
 {% endfor %}</ul>
 <ul class="lang-ko" lang="ko">
-{% for tl_line in tl_doc.tldr_ko %}<li>{{ tl_line }}</li>
+{% for tl_line in tl_ko %}<li>{{ tl_line }}</li>
+{% endfor %}</ul>
+<ul class="lang-zh" lang="zh-Hans">
+{% for tl_line in tl_zh %}<li>{{ tl_line }}</li>
 {% endfor %}</ul>
 </div>

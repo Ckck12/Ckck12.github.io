@@ -26,6 +26,8 @@ author:
   name             : "Chan Park"
   pronouns         : # example: "she/her"
   bio              : "AI researcher — vision-language-action models for driving and robotics"
+  bio_ko           : "AI 연구자 — 자율주행·로봇을 위한 vision-language-action 모델"   # Korean (site language switch)
+  bio_zh           : "AI 研究员 — 面向自动驾驶与机器人的 vision-language-action 模型"   # Simplified Chinese
   location         : # City, Country
   employer         : # Organization
   uri              : # URL
@@ -250,6 +252,17 @@ defaults:
       author_profile: true
       share: false
       comments: false
+  # _posts (Blog)
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      share: false
+      comments: false
+      related: false
 
 
 # Sass/SCSS

@@ -2,14 +2,15 @@
   Author list with affiliations, venue/status and link buttons for a publication.
   Usage: {% include pub-meta.html %}            (reads the current page)
      or: {% include pub-meta.html doc=a_doc %}  (e.g. from a project page)
-  Front matter used: author_list (name, sup, me), affiliations, author_notes,
-  venue, status, paper_url, project_url, code_url, slides_url, extra_links (label, url).
+  Front matter used: author_list (name, sup, me), affiliations, author_notes (+ optional author_notes_ko / author_notes_zh),
+  venue, status, paper_url, project_url, code_url, slides_url, extra_links (label, url, optional label_ko / label_zh).
+  Names, affiliations and venues stay in English; button labels follow the site language.
 {% endcomment %}{% if include.doc %}{% assign pm = include.doc %}{% else %}{% assign pm = page %}{% endif %}
 <div class="pub-meta">
 {% if pm.title != page.title %}<p class="pub-meta__title">{{ pm.title }}</p>
 {% endif %}{% if pm.author_list %}<p class="pub-meta__authors">{% for au in pm.author_list %}{% if au.me %}<strong>{{ au.name }}</strong>{% else %}{{ au.name }}{% endif %}{% if au.sup %}<sup>{{ au.sup }}</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
 {% endif %}{% if pm.affiliations %}<p class="pub-meta__affs">{% for af in pm.affiliations %}<span>{{ af }}</span>{% endfor %}</p>
-{% endif %}{% if pm.author_notes %}<p class="pub-meta__notes"><span>{{ pm.author_notes }}</span></p>
-{% endif %}<p class="pub-meta__venue">{% if pm.venue and pm.venue != "" %}{{ pm.venue }}{% endif %}{% if pm.status and pm.status != "" %}{% if pm.venue and pm.venue != "" %} · {% endif %}{{ pm.status }}{% endif %}</p>
-<p class="pub-meta__links">{% if pm.paper_url %}<a class="pbtn" href="{{ pm.paper_url }}">Paper</a>{% endif %}{% if pm.project_url %}<a class="pbtn" href="{{ pm.project_url }}">Project page</a>{% endif %}{% if pm.code_url %}<a class="pbtn" href="{{ pm.code_url }}">Code</a>{% endif %}{% if pm.slides_url %}<a class="pbtn" href="{{ pm.slides_url }}">PPT</a>{% endif %}{% for xl in pm.extra_links %}<a class="pbtn" href="{{ xl.url }}">{{ xl.label }}</a>{% endfor %}</p>
+{% endif %}{% if pm.author_notes %}<p class="pub-meta__notes"><span class="lang-en">{{ pm.author_notes }}</span><span class="lang-ko" lang="ko">{{ pm.author_notes_ko | default: pm.author_notes }}</span><span class="lang-zh" lang="zh-Hans">{{ pm.author_notes_zh | default: pm.author_notes }}</span></p>
+{% endif %}<p class="pub-meta__venue">{% if pm.venue and pm.venue != "" %}{{ pm.venue }}{% endif %}{% if pm.status and pm.status != "" %}{% if pm.venue and pm.venue != "" %} · {% endif %}{% include pub-status.html status=pm.status %}{% endif %}</p>
+<p class="pub-meta__links">{% if pm.paper_url %}<a class="pbtn" href="{{ pm.paper_url }}"><span class="lang-en">Paper</span><span class="lang-ko" lang="ko">논문</span><span class="lang-zh" lang="zh-Hans">论文</span></a>{% endif %}{% if pm.project_url %}<a class="pbtn" href="{{ pm.project_url }}"><span class="lang-en">Project page</span><span class="lang-ko" lang="ko">프로젝트 페이지</span><span class="lang-zh" lang="zh-Hans">项目主页</span></a>{% endif %}{% if pm.code_url %}<a class="pbtn" href="{{ pm.code_url }}"><span class="lang-en">Code</span><span class="lang-ko" lang="ko">코드</span><span class="lang-zh" lang="zh-Hans">代码</span></a>{% endif %}{% if pm.slides_url %}<a class="pbtn" href="{{ pm.slides_url }}">PPT</a>{% endif %}{% for xl in pm.extra_links %}{% case xl.label %}{% when "Workshop" %}{% assign xl_ko = "워크숍" %}{% assign xl_zh = "研讨会" %}{% when "Video" %}{% assign xl_ko = "영상" %}{% assign xl_zh = "视频" %}{% when "Slides" %}{% assign xl_ko = "발표 자료" %}{% assign xl_zh = "幻灯片" %}{% when "Demo" %}{% assign xl_ko = "데모" %}{% assign xl_zh = "演示" %}{% else %}{% assign xl_ko = xl.label %}{% assign xl_zh = xl.label %}{% endcase %}<a class="pbtn" href="{{ xl.url }}"><span class="lang-en">{{ xl.label }}</span><span class="lang-ko" lang="ko">{{ xl.label_ko | default: xl_ko }}</span><span class="lang-zh" lang="zh-Hans">{{ xl.label_zh | default: xl_zh }}</span></a>{% endfor %}</p>
 </div>

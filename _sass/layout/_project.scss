@@ -1,53 +1,109 @@
 /* ==========================================================================
    PROJECT / PUBLICATION DETAIL PAGES
-   (language toggle, TL;DR box, author block, STAR sections, figures,
+   (site language switch, TL;DR box, author block, STAR sections, figures,
    videos, result tables, stat tiles, simple bar charts)
    ========================================================================== */
 
-/* ---- English / Korean toggle ------------------------------------------- */
-/* Default (no JS or nothing saved) = English. */
-html[data-lang="ko"] .lang-en {
+/* ---- Site language: English / Korean / Simplified Chinese --------------- */
+/* <html data-lang="en|ko|zh"> is set by _includes/lang-switch.html.
+   Default (no JS, or nothing saved) = English: only .lang-en is shown. */
+html:not([data-lang="ko"]) .lang-ko,
+html:not([data-lang="zh"]) .lang-zh,
+html[data-lang="ko"] .lang-en,
+html[data-lang="zh"] .lang-en {
   display: none !important;
 }
 
-html:not([data-lang="ko"]) .lang-ko {
-  display: none !important;
-}
-
-.lang-switch {
+/* Masthead: the switcher sits outside the greedy nav, at the top right. */
+.masthead__menu {
   display: flex;
-  justify-content: flex-end;
-  margin: 0 0 0.75em;
+  align-items: center;
 }
 
-.lang-switch__group {
-  display: inline-flex;
-  border: 1px solid var(--global-dark-border-color);
-  border-radius: 999px;
-  overflow: hidden;
+.masthead__menu .greedy-nav {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Inline children, so the spaces in "한국어 | Eng | 中文" render. */
+.lang-switch {
+  flex: 0 0 auto;
+  display: block;
+  margin-left: 0.5rem;
+  font-size: $type-size-6;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* The switcher does nothing without JS, so hide it. */
+.no-js .lang-switch {
+  display: none;
 }
 
 .lang-switch__btn {
+  display: inline-block;
   margin: 0;
-  padding: 0.3em 0.9em;
+  padding: 0.35em 0.15em;
   border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
   background: transparent;
-  color: var(--global-text-color);
-  font-size: 0.8em;
+  color: var(--global-masthead-link-color);
+  font: inherit;
   line-height: 1.4;
   cursor: pointer;
 
+  &:hover {
+    color: var(--global-masthead-link-color-hover);
+  }
+
   &:focus-visible {
     outline: 2px solid var(--global-base-color);
-    outline-offset: -2px;
+    outline-offset: 1px;
   }
 }
 
-html:not([data-lang="ko"]) .lang-switch__btn[data-lang-set="en"],
-html[data-lang="ko"] .lang-switch__btn[data-lang-set="ko"] {
-  background: var(--global-base-color);
-  color: #fff;
+.lang-switch__sep {
+  color: var(--global-text-color-light);
+  user-select: none;
+}
+
+/* Active language (English when nothing is set). */
+html:not([data-lang="ko"]):not([data-lang="zh"]) .lang-switch__btn[data-lang-set="en"],
+html[data-lang="ko"] .lang-switch__btn[data-lang-set="ko"],
+html[data-lang="zh"] .lang-switch__btn[data-lang-set="zh"] {
+  color: var(--global-text-color);
   font-weight: bold;
+  border-bottom-color: var(--global-base-color);
+}
+
+/* Projects list (/portfolio/): thin gray rule between items, like .pub-row. */
+.proj-list .list__item {
+  padding-bottom: 0.75em;
+  border-bottom: 1px solid var(--global-border-color);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Sidebar "Follow" button: keep Korean / Chinese labels on one line. */
+.author__urls-wrapper .btn {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .lang-switch {
+    margin-left: 0.25rem;
+  }
+
+  .lang-switch__btn {
+    padding: 0.35em 0.1em;
+  }
+
+  .masthead__menu-item--lg {
+    padding-right: 1em;
+  }
 }
 
 /* ---- TL;DR -------------------------------------------------------------- */

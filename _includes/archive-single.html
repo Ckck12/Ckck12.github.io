@@ -39,16 +39,25 @@
     {% endif %}
 
         {% if post.collection == 'publications' %}
-          <p>{% if post.venue and post.venue != "" %}<i>{{ post.venue }}</i>{% endif %}{% if post.status %}{% if post.venue and post.venue != "" %}, {% endif %}{{ post.status }}{% endif %}</p>
+          <p>{% if post.venue and post.venue != "" %}<i>{{ post.venue }}</i>{% endif %}{% if post.status and post.status != "" %}{% if post.venue and post.venue != "" %}, {% endif %}{% include pub-status.html status=post.status %}{% endif %}</p>
         {% elsif post.collection == 'portfolio' %}
         {% elsif post.date %}
          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
         {% endif %}
 
-    {% if post.excerpt and site.read_more != 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
-    {% elsif post.excerpt and site.read_more == 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
+    {% comment %} Excerpt in the site language: excerpt (English), excerpt_ko, excerpt_zh (fallback: excerpt). {% endcomment %}
+    {% if post.excerpt %}
+      {% assign ex_ko = post.excerpt_ko | default: post.excerpt %}
+      {% assign ex_zh = post.excerpt_zh | default: post.excerpt %}
+      {% if site.read_more != 'enabled' %}
+    <div class="archive__item-desc lang-en" itemprop="description">{{ post.excerpt | markdownify }}</div>
+    <div class="archive__item-desc lang-ko" lang="ko">{{ ex_ko | markdownify }}</div>
+    <div class="archive__item-desc lang-zh" lang="zh-Hans">{{ ex_zh | markdownify }}</div>
+      {% else %}
+    <div class="archive__item-desc lang-en" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></div>
+    <div class="archive__item-desc lang-ko" lang="ko"><p>{{ ex_ko | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> 더 보기</a></strong></p></div>
+    <div class="archive__item-desc lang-zh" lang="zh-Hans"><p>{{ ex_zh | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> 阅读更多</a></strong></p></div>
+      {% endif %}
     {% endif %}
     
     {% if post.citation and post.paperurl and post.slidesurl and post.bibtexurl %}

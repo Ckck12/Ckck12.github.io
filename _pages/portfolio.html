@@ -1,6 +1,8 @@
 ---
 layout: archive
 title: "Projects"
+title_ko: "프로젝트"
+title_zh: "项目"
 permalink: /portfolio/
 author_profile: true
 ---
@@ -8,6 +10,8 @@ author_profile: true
 {% include base_path %}
 
 {% assign projects = site.portfolio | sort: "order" %}
+<div class="proj-list">
 {% for post in projects %}
   {% include archive-single.html %}
 {% endfor %}
+</div>

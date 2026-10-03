@@ -1,0 +1,5 @@
+{% comment %}
+  Page <h1> text in the three site languages.
+  Pages may set title_ko / title_zh in front matter (fallback: title). Pages without them print title unchanged.
+  The browser tab title (seo.html) always uses the English title.
+{% endcomment %}{% if page.title_ko or page.title_zh %}<span class="lang-en">{{ page.title }}</span><span class="lang-ko" lang="ko">{{ page.title_ko | default: page.title }}</span><span class="lang-zh" lang="zh-Hans">{{ page.title_zh | default: page.title }}</span>{% else %}{{ page.title }}{% endif %}

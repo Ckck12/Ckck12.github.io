@@ -1,0 +1,24 @@
+---
+layout: archive
+title: "Blog"
+title_ko: "블로그"
+title_zh: "博客"
+permalink: /blog/
+author_profile: true
+redirect_from:
+  - /year-archive/
+---
+
+{% include base_path %}
+
+{% if site.posts.size > 0 %}
+<div class="proj-list">
+{% for post in site.posts %}
+  {% include archive-single.html %}
+{% endfor %}
+</div>
+{% else %}
+<div class="lang-en"><p>Posts are coming soon: research notes on driving VLAs, robot-policy safety and evaluation.</p></div>
+<div class="lang-ko" lang="ko"><p>곧 글을 올릴 예정입니다. Driving VLA, robot-policy safety, evaluation에 대한 연구 노트를 다룹니다.</p></div>
+<div class="lang-zh" lang="zh-Hans"><p>文章即将发布，内容为 driving VLA、robot-policy safety 和 evaluation 相关的研究笔记。</p></div>
+{% endif %}
