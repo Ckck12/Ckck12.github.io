@@ -23,6 +23,7 @@ repository               : "Ckck12/Ckck12.github.io"
 author:
   # Biographic information
   avatar           : "profile.jpg"
+  avatar_hover     : "profile_hover.jpg"   # shown on mouse-over (like the publication thumbnails)
   name             : "Chan Park"
   pronouns         : # example: "she/her"
   bio              : "AI researcher — vision-language-action models for driving and robotics"
