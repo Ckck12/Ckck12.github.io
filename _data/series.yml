@@ -19,18 +19,15 @@ drone-policy:
       title: "Change the model, close the data loop"
   parts:
     - { part: 1,  season: 1, title: "Fast frames, missing targets: a drone simulator on a laptop CPU" }
-    - { part: 2,  season: 1, title: "Which simulation assumptions change the task?" }
-    - { part: 3,  season: 1, title: "How would I prove the drone is listening?" }
-    - { part: 4,  season: 1, title: "Same scene, different words: a counterfactual dataset" }
-    - { part: 5,  season: 1, title: "The policy that did not listen" }
-    - { part: 6,  season: 2, title: "What my evaluation protocol got wrong" }
-    - { part: 7,  season: 2, title: "Can I remove the shortcut?" }
-    - { part: 8,  season: 2, title: "Do more scenes make the drone listen?" }
-    - { part: 9,  season: 2, title: "Separating perception from choice: a world model and a planner" }
-    - { part: 10, season: 3, title: "One evaluation contract for Python and C++" }
-    - { part: 11, season: 3, title: "What changes when the policy runs in ONNX and INT8?" }
-    - { part: 12, season: 3, title: "A C++ inference runner, measured end to end" }
-    - { part: 13, season: 3, title: "Turning evaluation into a release gate" }
-    - { part: 14, season: 4, title: "Adapting SmolVLA to a drone" }
-    - { part: 15, season: 4, title: "Which failures should become the next dataset?" }
-    - { part: 16, season: 4, title: "Taking the evaluation contract into ROS 2 and PX4" }
+    - { part: 2,  season: 1, title: "From a real drone's spec sheet to a testable task" }
+    - { part: 3,  season: 1, title: "Same scene, different words: a counterfactual dataset" }
+    - { part: 4,  season: 1, title: "The policy that did not listen" }
+    - { part: 5,  season: 2, title: "Can I remove the shortcut?" }
+    - { part: 6,  season: 2, title: "Separating perception from choice: a world model and a planner" }
+    - { part: 7,  season: 3, title: "One evaluation contract for Python and C++" }
+    - { part: 8,  season: 3, title: "What changes when the policy runs in ONNX and INT8?" }
+    - { part: 9,  season: 3, title: "A C++ inference runner, measured end to end" }
+    - { part: 10, season: 3, title: "Turning evaluation into a release gate" }
+    - { part: 11, season: 4, title: "Adapting SmolVLA to a drone" }
+    - { part: 12, season: 4, title: "Which failures should become the next dataset?" }
+    - { part: 13, season: 4, title: "Taking the evaluation contract into ROS 2 and PX4" }

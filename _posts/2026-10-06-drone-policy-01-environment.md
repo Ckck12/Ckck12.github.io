@@ -2,6 +2,7 @@
 title: "Part 1 · Fast frames, missing targets: a drone simulator on a laptop CPU"
 title_ko: "1편 · 빠른 프레임, 사라진 타깃: 노트북 CPU로 드론 시뮬레이터 만들기"
 title_zh: "第 1 篇 · 帧很快，目标却不见了：用笔记本 CPU 搭建无人机仿真"
+date: 2026-10-06 09:00:00 +0900
 permalink: /blog/drone-policy/01-environment/
 series: drone-policy
 part: 1
@@ -40,7 +41,7 @@ frame costs.
 
 <figure class="pfig">
   <img src="/images/blog/drone-policy/common/expert_val_pair0.gif" alt="Two side-by-side camera views from the same start: one instruction sends the drone to the blue box, the other to the green cylinder" loading="lazy">
-  <figcaption><b>Scripted expert, not a trained policy.</b> This is where the series is heading: same start, same camera image, two different sentences, two different targets. Whether a small learned policy can do the same is the question of Parts 3 to 5.</figcaption>
+  <figcaption><b>Scripted expert, not a trained policy.</b> This is where the series is heading: same start, same camera image, two different sentences, two different targets. Whether a small learned policy can do the same is the question of Part 4.</figcaption>
 </figure>
 
 ## The first recording looked valid, and wasn't
@@ -122,7 +123,7 @@ labels every pixel with the object it belongs to, and counted:
 </figure>
 
 When so little of the image carries the answer, a small policy can latch onto an easier cue
-instead. Part 5 shows a policy doing exactly that.
+instead. Part 4 shows a policy doing exactly that.
 
 The camera call is short (simplified; full code in
 [`dronevla/camera.py`](https://github.com/Ckck12/Drone_VLA_Simulation/blob/98490502e80c0cf50a65765619e6d72f03ee88b0/dronevla/camera.py#L123-L144)):
@@ -211,9 +212,9 @@ extrapolate the measured rate; that dataset doesn't exist yet.
 
 ## Next
 
-A fast simulator is not yet a *believable* one. Part 2 asks which simulation assumptions
-actually change the task: a gimbal camera, wind, and position noise, each matched against the
-spec sheet of a real drone.
+A fast simulator is not yet a *believable* one. Part 2 takes a real drone's spec sheet and asks
+what a 27 g simulated quadrotor can honestly borrow from it, then fixes the task and how it is
+scored, before any model is trained.
 
 ## Appendix
 
