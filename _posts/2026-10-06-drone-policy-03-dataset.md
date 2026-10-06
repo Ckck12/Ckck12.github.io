@@ -116,7 +116,7 @@ Then a validator reads everything back *from disk* and runs 14 checks: files pre
 matching, images decoding to 96 x 128 x 3, every pair complete and identical at the start,
 splits disjoint, every sentence naming its goal, actions aligned with observations. Here is the
 pair check, slightly simplified
-([full code](https://github.com/Ckck12/Drone_VLA_Simulation/blob/b42a22766427e9e4eba6b8e8c79754e63f69f386/dronevla/dataset.py#L140-L172)):
+([full code](https://github.com/Ckck12/Drone_VLA_Simulation/blob/49a7f1ad0e1f5c205f1689792d17086c566c2e10/dronevla/dataset.py#L140-L172)):
 
 ```python
 for pid, eps in by_pair.items():
@@ -167,7 +167,7 @@ Part 4 trains a policy on these 100 pairs, and it does not listen.
 <details>
 <summary>Reproduce</summary>
 
-<p>Commit <a href="https://github.com/Ckck12/Drone_VLA_Simulation/tree/b42a22766427e9e4eba6b8e8c79754e63f69f386"><code>b42a227</code></a>, set up as in Part 1. Images and parquet files are not in git; the manifest, datasheet, splits and validation report are.</p>
+<p>Commit <a href="https://github.com/Ckck12/Drone_VLA_Simulation/tree/49a7f1ad0e1f5c205f1689792d17086c566c2e10"><code>49a7f1a</code></a>, set up as in Part 1. Images and parquet files are not in git; the manifest, datasheet, splits and validation report are.</p>
 
 <pre><code>python -m dronevla.record --out data/v0.2 --pairs 100 10 10 --version 0.2.0    # ~9 min on CPU
 python scripts/inspect_episode.py --dataset data/v0.2 --episode val-004-g1      # every frame + action arrow

@@ -121,7 +121,7 @@ Two details matter:
   decision. Learning to fly is not part of the task; learning *where* to fly is.
 - **One adapter enforces the limits, for everyone.** The expert, the learned policies and later
   the C++ runtime all go through the same function
-  ([full code](https://github.com/Ckck12/Drone_VLA_Simulation/blob/b42a22766427e9e4eba6b8e8c79754e63f69f386/dronevla/action_adapter.py#L47-L80)):
+  ([full code](https://github.com/Ckck12/Drone_VLA_Simulation/blob/49a7f1ad0e1f5c205f1689792d17086c566c2e10/dronevla/action_adapter.py#L47-L80)):
 
 ```python
 def adapt(raw, limits=ActionLimits(), planar=True):
@@ -219,7 +219,7 @@ keeps wind off for now.</p>
 <details>
 <summary>B. Reproduce</summary>
 
-<p>Commit <a href="https://github.com/Ckck12/Drone_VLA_Simulation/tree/b42a22766427e9e4eba6b8e8c79754e63f69f386"><code>b42a227</code></a>, set up as in Part 1.</p>
+<p>Commit <a href="https://github.com/Ckck12/Drone_VLA_Simulation/tree/49a7f1ad0e1f5c205f1689792d17086c566c2e10"><code>49a7f1a</code></a>, set up as in Part 1.</p>
 
 <pre><code>python -m pytest tests -q                    # includes one fixture per outcome
 python scripts/try_env.py --headless         # same start, two instructions, two outcomes

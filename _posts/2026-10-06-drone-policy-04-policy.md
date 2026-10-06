@@ -67,7 +67,7 @@ Three inputs, one output, no pretrained parts:
 They are joined into 192 numbers, and a small MLP outputs four velocities (squashed by `tanh`
 and scaled to the limits) plus one Stop logit. Total: **480,901 parameters**. It runs in
 **2.7 ms per decision** on the CPU (median), far inside the 200 ms budget (simplified below;
-[model code](https://github.com/Ckck12/Drone_VLA_Simulation/blob/b42a22766427e9e4eba6b8e8c79754e63f69f386/dronevla/model.py#L109-L120)):
+[model code](https://github.com/Ckck12/Drone_VLA_Simulation/blob/49a7f1ad0e1f5c205f1689792d17086c566c2e10/dronevla/model.py#L109-L120)):
 
 ```python
 def forward(self, rgb_u8, proprio, text_vec):
@@ -90,7 +90,7 @@ def forward(self, rgb_u8, proprio, text_vec):
 Behaviour cloning means copying the expert: for every recorded frame, predict the action the
 expert took. Two losses are added together: a Huber loss on the four velocities, and a binary
 cross-entropy on Stop, weighted up because only 6.7% of rows are Stop
-([full code](https://github.com/Ckck12/Drone_VLA_Simulation/blob/b42a22766427e9e4eba6b8e8c79754e63f69f386/dronevla/train.py#L289-L304)):
+([full code](https://github.com/Ckck12/Drone_VLA_Simulation/blob/49a7f1ad0e1f5c205f1689792d17086c566c2e10/dronevla/train.py#L289-L304)):
 
 ```python
 huber = nn.SmoothL1Loss(beta=0.1)
@@ -157,7 +157,7 @@ My hypothesis was that the image makes the words unnecessary, and I tested it di
 every recorded training state, I asked each trained policy for its action twice: once with the
 episode's own sentence, and once with its pair partner's. Then I compared how much the sideways
 command changed with how much the expert's changes
-([measurement script](https://github.com/Ckck12/Drone_VLA_Simulation/blob/b42a22766427e9e4eba6b8e8c79754e63f69f386/scripts/instruction_sensitivity.py)).
+([measurement script](https://github.com/Ckck12/Drone_VLA_Simulation/blob/49a7f1ad0e1f5c205f1689792d17086c566c2e10/scripts/instruction_sensitivity.py)).
 
 <figure class="pfig">
   <img src="/images/blog/drone-policy/04/04_swap_gap.png" alt="Left: on a log scale, swapping the sentence changes the expert's lateral command by about 0.2 m/s at every step but the policy's by about 0.003 to 0.007 m/s. Right: the policy's training error is about 0.10 m/s at the first step and about 0.01 m/s afterwards" loading="lazy">
@@ -225,7 +225,7 @@ not the listening.</p>
 <details>
 <summary>B. Reproduce</summary>
 
-<p>Commit <a href="https://github.com/Ckck12/Drone_VLA_Simulation/tree/b42a22766427e9e4eba6b8e8c79754e63f69f386"><code>b42a227</code></a>, dataset v0.2 from Part 3.</p>
+<p>Commit <a href="https://github.com/Ckck12/Drone_VLA_Simulation/tree/49a7f1ad0e1f5c205f1689792d17086c566c2e10"><code>49a7f1a</code></a>, dataset v0.2 from Part 3.</p>
 
 <pre><code>for s in 0 1 2; do
   python -m dronevla.train --data data/v0.2 --epochs 20 --select last --seed $s --out runs/bc_v0.2_s$s
