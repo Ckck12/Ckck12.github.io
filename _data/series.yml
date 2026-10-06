@@ -1,0 +1,36 @@
+# Blog series. A post joins a series with `series: <key>` and `part: <n>` in its front matter.
+# Parts listed here but not yet published show as "coming". Seasons group parts in the index.
+drone-policy:
+  title: "Building and Evaluating a Drone VLA from Scratch"
+  title_ko: "드론 VLA를 처음부터 만들고 평가하기"
+  title_zh: "从零构建并评估无人机 VLA"
+  blurb: "One question runs through it: if you change only the words, does the drone fly somewhere else? CPU-first, in simulation. Seasons 1–3 use a small language-conditioned policy trained from scratch; the pretrained VLA (SmolVLA) arrives in Season 4."
+  blurb_ko: "관통하는 질문은 하나입니다: 말만 바꾸면 드론이 다른 곳으로 날아갈까? CPU 우선, 시뮬레이션에서 진행합니다. 시즌 1–3은 처음부터 학습한 작은 language-conditioned 정책을, 시즌 4에서 사전학습 VLA(SmolVLA)를 다룹니다."
+  blurb_zh: "贯穿全系列的问题只有一个：只改变指令文字，无人机会飞向别处吗？以 CPU 为先，在仿真中进行。第 1–3 季使用从零训练的小型 language-conditioned 策略，第 4 季引入预训练 VLA（SmolVLA）。"
+  repo: "https://github.com/Ckck12/Drone_VLA_Simulation"
+  seasons:
+    - season: 1
+      title: "Make the question testable"
+    - season: 2
+      title: "Find out what the result means"
+    - season: 3
+      title: "Change the system, keep the behaviour"
+    - season: 4
+      title: "Change the model, close the data loop"
+  parts:
+    - { part: 1,  season: 1, title: "Fast frames, missing targets: a drone simulator on a laptop CPU" }
+    - { part: 2,  season: 1, title: "Which simulation assumptions change the task?" }
+    - { part: 3,  season: 1, title: "How would I prove the drone is listening?" }
+    - { part: 4,  season: 1, title: "Same scene, different words: a counterfactual dataset" }
+    - { part: 5,  season: 1, title: "The policy that did not listen" }
+    - { part: 6,  season: 2, title: "What my evaluation protocol got wrong" }
+    - { part: 7,  season: 2, title: "Can I remove the shortcut?" }
+    - { part: 8,  season: 2, title: "Do more scenes make the drone listen?" }
+    - { part: 9,  season: 2, title: "Separating perception from choice: a world model and a planner" }
+    - { part: 10, season: 3, title: "One evaluation contract for Python and C++" }
+    - { part: 11, season: 3, title: "What changes when the policy runs in ONNX and INT8?" }
+    - { part: 12, season: 3, title: "A C++ inference runner, measured end to end" }
+    - { part: 13, season: 3, title: "Turning evaluation into a release gate" }
+    - { part: 14, season: 4, title: "Adapting SmolVLA to a drone" }
+    - { part: 15, season: 4, title: "Which failures should become the next dataset?" }
+    - { part: 16, season: 4, title: "Taking the evaluation contract into ROS 2 and PX4" }

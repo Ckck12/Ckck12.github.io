@@ -520,3 +520,76 @@ html[data-lang="zh"] .lang-switch__btn[data-lang-set="zh"] {
 .author__avatar--swap:focus-within .author__avatar-hover {
   opacity: 1;
 }
+
+/* ---- Blog series box and pager (_includes/series-nav.html) --------------- */
+.series-box {
+  margin: 0 0 1.4em;
+  padding: 0.7em 1em;
+  border: 1px solid var(--global-border-color);
+  border-radius: 6px;
+  background: rgba(127, 127, 127, 0.06);
+  font-size: 0.85em;
+
+  summary {
+    cursor: pointer;
+    line-height: 1.5;
+  }
+
+  .series-box__label {
+    margin-right: 0.5em;
+    font-size: 0.8em;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--global-base-color);
+  }
+
+  .series-box__count {
+    margin-left: 0.5em;
+    color: var(--global-fig-caption-color);
+  }
+
+  .series-box__blurb {
+    margin: 0.6em 0 0.4em;
+  }
+
+  .series-box__list {
+    margin: 0;
+    padding-left: 1.4em;
+
+    li {
+      margin: 0.15em 0;
+    }
+
+    .is-coming {
+      color: var(--global-fig-caption-color);
+    }
+  }
+
+  .series-box__season {
+    margin: 0.7em 0 0.2em;
+    font-size: 0.85em;
+    font-weight: bold;
+    color: var(--global-fig-caption-color);
+  }
+}
+
+.series-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin: 2.2em 0 0.5em;
+  padding-top: 1em;
+  border-top: 1px solid var(--global-border-color);
+  font-size: 0.85em;
+
+  .series-pager__next {
+    text-align: right;
+  }
+
+  .series-pager__dir {
+    display: block;
+    font-size: 0.85em;
+    color: var(--global-fig-caption-color);
+  }
+}

@@ -1,0 +1,27 @@
+{% comment %}
+  Series box for a blog post. Usage: {% include series-nav.html where="top" %} or where="bottom".
+  Reads page.series / page.part and _data/series.yml. Parts without a published post show as "coming".
+{% endcomment %}{% assign sr = site.data.series[page.series] %}{% if sr %}{% assign sr_posts = site.posts | where: "series", page.series %}{% assign sr_total = sr.parts | size %}{% assign cur_meta = sr.parts | where: "part", page.part | first %}
+{% if include.where == "bottom" %}{% assign prev_n = page.part | minus: 1 %}{% assign next_n = page.part | plus: 1 %}{% assign prev_post = sr_posts | where: "part", prev_n | first %}{% assign next_post = sr_posts | where: "part", next_n | first %}{% assign next_meta = sr.parts | where: "part", next_n | first %}
+<nav class="series-pager" aria-label="Series navigation">
+  <div class="series-pager__prev">{% if prev_post %}<a href="{{ site.baseurl }}{{ prev_post.url }}"><span class="series-pager__dir">← Part {{ prev_n }}</span>{{ prev_post.title }}</a>{% endif %}</div>
+  <div class="series-pager__next">{% if next_post %}<a href="{{ site.baseurl }}{{ next_post.url }}"><span class="series-pager__dir">Part {{ next_n }} →</span>{{ next_post.title }}</a>{% elsif next_meta %}<span class="series-pager__dir">Next: Part {{ next_n }}</span>{{ next_meta.title }} <em>(coming)</em>{% endif %}</div>
+</nav>
+{% else %}
+<details class="series-box">
+  <summary>
+    <span class="series-box__label">Series</span>
+    <span class="lang-en">{{ sr.title }}</span><span class="lang-ko" lang="ko">{{ sr.title_ko | default: sr.title }}</span><span class="lang-zh" lang="zh-Hans">{{ sr.title_zh | default: sr.title }}</span>
+    <span class="series-box__count">Season {{ cur_meta.season }} · Part {{ page.part }} of {{ sr_total }}</span>
+  </summary>
+  <p class="series-box__blurb"><span class="lang-en">{{ sr.blurb }}</span><span class="lang-ko" lang="ko">{{ sr.blurb_ko | default: sr.blurb }}</span><span class="lang-zh" lang="zh-Hans">{{ sr.blurb_zh | default: sr.blurb }}</span> <a href="{{ sr.repo }}">Code</a></p>
+  {% for ss in sr.seasons %}{% assign ss_parts = sr.parts | where: "season", ss.season %}
+  <p class="series-box__season">Season {{ ss.season }} · {{ ss.title }}</p>
+  <ol class="series-box__list" start="{{ ss_parts.first.part }}">
+  {% for it in ss_parts %}{% assign it_post = sr_posts | where: "part", it.part | first %}
+    <li class="{% if it.part == page.part %}is-current{% elsif it_post %}is-published{% else %}is-coming{% endif %}">{% if it.part == page.part %}<strong>{{ it.title }}</strong>{% elsif it_post %}<a href="{{ site.baseurl }}{{ it_post.url }}">{{ it.title }}</a>{% else %}{{ it.title }} <em>(coming)</em>{% endif %}</li>
+  {% endfor %}
+  </ol>
+  {% endfor %}
+</details>
+{% endif %}{% endif %}
