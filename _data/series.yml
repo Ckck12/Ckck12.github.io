@@ -22,7 +22,7 @@ drone-policy:
     - { part: 2,  season: 1, title: "From a real drone's spec sheet to a testable task" }
     - { part: 3,  season: 1, title: "Same scene, different words: a counterfactual dataset" }
     - { part: 4,  season: 1, title: "The policy that did not listen" }
-    - { part: 5,  season: 2, title: "Can I remove the shortcut?" }
+    - { part: 5,  season: 2, title: "Borrowing from VLAs: action tokens and action chunks" }
     - { part: 6,  season: 2, title: "Separating perception from choice: a world model and a planner" }
     - { part: 7,  season: 3, title: "One evaluation contract for Python and C++" }
     - { part: 8,  season: 3, title: "What changes when the policy runs in ONNX and INT8?" }
