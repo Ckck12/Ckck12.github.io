@@ -14,6 +14,34 @@ html[data-lang="zh"] .lang-en {
   display: none !important;
 }
 
+/* Blog bodies exist in English and Korean only: Chinese readers get the English body. */
+html[data-lang="ko"] .lang-enzh {
+  display: none !important;
+}
+
+/* Key sentence in a blog post: a marker underline, used once or twice per post section at most. */
+.key-line {
+  background: linear-gradient(transparent 60%, rgba(255, 190, 0, 0.32) 60%);
+  font-weight: 600;
+}
+
+/* STAR summary box at the end of a blog post (reuses .star-h / .star-tag below). */
+.star-summary {
+  margin: 2.5em 0 1.5em;
+  padding: 0.4em 1.2em 1em;
+  border: 1px solid var(--global-border-color);
+  border-radius: 6px;
+
+  .star-h {
+    margin: 1em 0 0.35em;
+    font-size: 1.05em;
+  }
+
+  p {
+    margin: 0 0 0.4em;
+  }
+}
+
 /* Masthead: the switcher sits outside the greedy nav, at the top right. */
 .masthead__menu {
   display: flex;
