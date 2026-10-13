@@ -30,7 +30,7 @@ redirect_from:
 
 <h1 id="projects"><span class="lang-en">Projects</span><span class="lang-ko" lang="ko">프로젝트</span><span class="lang-zh" lang="zh-Hans">项目</span></h1>
 
-* **Salience, Not Visibility: Privileged Commentary Supervision in End-to-End Driving VLAs** — <span class="lang-en">Independent research, Sep. 2026 – Present</span><span class="lang-ko" lang="ko">독립 연구, 2026.09 – 현재</span><span class="lang-zh" lang="zh-Hans">独立研究，2026.09 – 至今</span>
+* **Salience, Not Visibility: Privileged Commentary Supervision in End-to-End Driving VLAs** — <span class="lang-en">Ongoing research, Sep. 2026 – Present</span><span class="lang-ko" lang="ko">진행 중인 연구, 2026.09 – 현재</span><span class="lang-zh" lang="zh-Hans">进行中的研究，2026.09 – 至今</span>
   * <span class="lang-en">Audited how auto-generated commentary steers a CARLA driving VLA (SimLingo) and built closed-loop evaluation infrastructure.</span><span class="lang-ko" lang="ko">자동 생성 commentary가 CARLA 주행 VLA (SimLingo)의 제어에 미치는 영향을 분석하고, closed-loop 평가 환경을 구축.</span><span class="lang-zh" lang="zh-Hans">分析自动生成的 commentary 如何影响 CARLA 驾驶 VLA（SimLingo）的控制，并搭建 closed-loop 评估环境。</span>
 * **Route-Guided CBF-QP Repair** — LG Electronics Toronto AI Lab, 2026
   * <span class="lang-en">Route-guided safety layer that steers VLA manipulation around obstacles and back to the task path.</span><span class="lang-ko" lang="ko">VLA manipulation이 장애물을 돌아 작업 경로로 복귀하도록 유도하는 route-guided 안전 계층.</span><span class="lang-zh" lang="zh-Hans">route-guided 安全层：引导 VLA manipulation 绕过障碍物并回到任务路径。</span>
@@ -45,7 +45,7 @@ redirect_from:
 
 <h1 id="publications"><span class="lang-en">Publications</span><span class="lang-ko" lang="ko">논문</span><span class="lang-zh" lang="zh-Hans">论文</span></h1>
 
-1. **Chan Park**. "Salience, Not Visibility: Privileged Commentary Supervision in End-to-End Driving VLAs." Manuscript in preparation (target: NAACL).
+1. **Chan Park**. "Salience, Not Visibility: Privileged Commentary Supervision in End-to-End Driving VLAs." Ongoing.
 2. **Chan Park**, Sunwoo Hong, Kirak Kim, Yoonjeong Park, Alexander W. Olson, and Ali Pesaranghader. "Route-Guided CBF-QP Repair for Safe Vision-Language-Action Models." Workshop on Trustworthy Embodied Foundation Models, Robotics: Science and Systems (RSS) 2026.
 3. Chris McGale, Michel A. Herrera Viyella, **Chan Park**, Daniel Bros, Alexander Vicol, and Steve Mann. "Submersivity: XR-Guided Garbage Detection with an RC Submarine for Peter Street Basin Cleanup." IEEE International Conference on Mechatronics and Automation (ICMA) 2026.
 4. Alexander Vicol, Steve Mann, Chris McGale, Gianella Bejar-Alvarez, Michel Herrera Viyella, Darya Zanjanpour, **Chan Park**, Xiaoming Chen, Xueqi Yang, and Bingxuan Yang. "State-of-Flight: Wearable EEG and Motion Context During Flying or Floating." IEEE International Symposium on Computer-Based Medical Systems (CBMS) 2026.

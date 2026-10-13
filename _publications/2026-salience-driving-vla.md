@@ -5,10 +5,8 @@ authors: "Chan Park"
 author_list:
   - name: "Chan Park"
     me: true
-affiliations:
-  - "Independent research"
 venue: ""
-status: "Manuscript in preparation (target: NAACL)"
+status: "Ongoing"
 year: 2026
 date: 2026-10-01   # year-level only; used for ordering
 order: 1
@@ -33,7 +31,7 @@ tldr_zh:
   - "SimLingo 是 CARLA 驾驶 VLA，先生成解说，再以解说为条件驾驶；训练解说由仿真器特权状态自动生成。"
   - "全量审查 2,085,459 条记录：含原因的记录中有 5.48% 所述原因被生成器自身 LiDAR 可见性标志标为“不可见”。"
   - "开环实验：仅替换原因从句，预测速度变化 +0.85 m/s（单一场景类型）；删除无依据句子也会删掉制动线索。"
-excerpt: "Independent research on SimLingo: auto-generated commentary cites causes its own visibility flag marks as not visible, and the VLA uses that language for control (open-loop analysis; manuscript in preparation)."
+excerpt: "Ongoing research on SimLingo: auto-generated commentary cites causes its own visibility flag marks as not visible, and the VLA uses that language for control (open-loop analysis; ongoing)."
 meta_in_body: true
 featured: true
 collection: publications
