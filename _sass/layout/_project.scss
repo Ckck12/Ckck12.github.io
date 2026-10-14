@@ -332,6 +332,11 @@ html[data-lang="zh"] .lang-switch__btn[data-lang-set="zh"] {
   }
 }
 
+/* one video on its own, full content width */
+.pvid--single {
+  margin: 1.2em 0 1.4em;
+}
+
 /* ---- Stat tiles --------------------------------------------------------- */
 .kpis {
   display: grid;
