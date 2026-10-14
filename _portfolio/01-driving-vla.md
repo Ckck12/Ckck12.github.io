@@ -1,9 +1,9 @@
 ---
-title: "Salience, Not Visibility: Privileged Commentary Supervision in End-to-End Driving VLAs"
+title: "Interpretable Autonomous Driving VLA through Belief Distillation (IBD)"
 order: 1
-excerpt: "Ongoing research (Sep. 2026 – present): a driving VLA's auto-generated commentary cites causes its own LiDAR visibility flag marks as not visible. I measure how that language steers control (open-loop) and build closed-loop CARLA + Bench2Drive infrastructure.<br/><img src='/images/projects/thumb_driving_vla.png' alt='CARLA frame with a hidden hazard behind a hedge'>"
-excerpt_ko: "진행 중인 연구(2026년 9월 – 현재): 주행 VLA의 자동 생성 주석이 자체 LiDAR 가시성 플래그상 “안 보임”인 원인을 언급합니다. 그 언어가 제어를 얼마나 바꾸는지 측정하고(개루프), CARLA + Bench2Drive 폐루프 인프라를 구축합니다.<br/><img src='/images/projects/thumb_driving_vla.png' alt='CARLA frame with a hidden hazard behind a hedge'>"
-excerpt_zh: "进行中的研究（2026年9月至今）：驾驶 VLA 自动生成的解说会提到被自身 LiDAR 可见性标志标为“不可见”的原因。我测量这些语言对控制的影响（开环），并搭建 CARLA + Bench2Drive 闭环基础设施。<br/><img src='/images/projects/thumb_driving_vla.png' alt='CARLA frame with a hidden hazard behind a hedge'>"
+excerpt: "Ongoing project (Sep. 2026 – present): a driving VLA's commentary is both an explanation and a control input. IBD keeps the commentary honest and moves the safety knowledge in privileged simulator labels into a camera-only belief token with a readable risk map.<br/><img src='/images/projects/thumb_driving_vla.png' alt='CARLA frame with a hidden hazard behind a hedge'>"
+excerpt_ko: "진행 중인 프로젝트(2026년 9월 – 현재): 주행 VLA의 해설은 설명이면서 제어 입력입니다. IBD는 해설을 정직하게 유지하고, 특권 시뮬레이터 라벨의 안전 지식을 사람이 읽을 수 있는 위험 지도를 가진 카메라 기반 신념 토큰으로 옮깁니다.<br/><img src='/images/projects/thumb_driving_vla.png' alt='CARLA frame with a hidden hazard behind a hedge'>"
+excerpt_zh: "进行中的项目（2026年9月至今）：驾驶 VLA 的解说既是解释也是控制输入。IBD 让解说保持如实，并把特权仿真标签中的安全知识转移到仅依赖相机、带可读风险地图的信念 token 中。<br/><img src='/images/projects/thumb_driving_vla.png' alt='CARLA frame with a hidden hazard behind a hedge'>"
 collection: portfolio
 ---
 
