@@ -32,7 +32,7 @@ teaser_hover: cbfqp_route.jpg
 paper_url:
 code_url: https://github.com/Ckck12/Route-Guied-CBF-QP
 project_url: https://ckck12.github.io/Route-Guied-CBF-QP/
-slides_url: /files/Route_Guided_CBF_QP_slides.pdf
+slides_url:
 extra_links:
   - label: "Workshop"
     url: https://robot-fm-safety.github.io/
