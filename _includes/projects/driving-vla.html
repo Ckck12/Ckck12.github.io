@@ -3,8 +3,10 @@
   Used by _publications/2026-salience-driving-vla.md and _portfolio/01-driving-vla.md.
   The global language switcher lives in the masthead; this include only provides en / ko / zh blocks.
   No experiment results on this page (user decision, 2026-10-15): motivation, problem, method, and videos with their meaning.
-  Every video is real: dataset frames with verbatim labels, released-SimLingo open-loop text edits, and closed-loop runs in which
-  the risk table was drawn by the agent itself while driving.
+  Every video except one is real: dataset frames with verbatim labels, released-SimLingo open-loop text edits, and closed-loop runs
+  in which the risk table was drawn by the agent itself while driving. The exception is driving_ibd_pedestrian_3248_sample.mp4
+  (user's file, uploaded unmodified on 2026-10-16): built from a hand-edited lang.jsonl, so it sits under "Significance" and its
+  caption must keep saying it is an illustrative sample, not model output.
 {% endcomment %}{% assign drv_doc = site.publications | where: "pub_id", "driving-vla" | first %}
 {% include tldr.html doc=drv_doc %}
 
@@ -118,17 +120,14 @@
 <video autoplay muted loop playsinline preload="metadata" poster="{{ site.baseurl }}/images/detail/driving/driving_ibd_pedestrian_3248_poster.jpg"><source src="{{ site.baseurl }}/files/videos/driving_ibd_pedestrian_3248.mp4" type="video/mp4"></video>
 <figcaption><span class="pvid__label lang-en">REWRITE vs. IBD · pedestrian behind a parked car</span><span class="pvid__label lang-ko" lang="ko">REWRITE vs IBD · 주차 차량 뒤의 보행자</span><span class="pvid__label lang-zh" lang="zh-Hans">REWRITE 与 IBD · 停放车辆后的行人</span><span class="lang-en">A pedestrian steps out from behind a parked car. Both models name the pedestrian, slow down, stop, and finish the route. <strong>Meaning:</strong> in closed loop, too, the commentary and the action move together. In this version the pedestrian cells of the risk map had no training targets, so this stop comes with the commentary; pedestrian risk targets are the next step. 0.5&times; speed.</span><span class="lang-ko" lang="ko">주차된 차 뒤에서 보행자가 나옵니다. 두 모델 모두 보행자를 말하며 감속하고 정지한 뒤 경로를 마칩니다. <strong>의의:</strong> 폐루프에서도 해설과 행동은 함께 움직입니다. 이번 버전에서는 위험 지도의 보행자 칸에 학습 정답이 없어서, 이 정지는 해설과 함께 일어난 것입니다. 보행자 위험 정답이 다음 단계입니다. 0.5배속.</span><span class="lang-zh" lang="zh-Hans">一名行人从停放的车辆后走出。两个模型都提到行人、减速、停车并完成路线。<strong>意义：</strong>在闭环中，解说与动作同样同步变化。本版本中风险地图的行人格子没有训练目标，因此这次停车是伴随解说发生的；行人风险目标是下一步。0.5 倍速。</span></figcaption>
 </figure>
-<figure class="pvid">
-<video autoplay muted loop playsinline preload="metadata" poster="{{ site.baseurl }}/images/detail/driving/driving_hazard_belief_parking_cut_in_poster.jpg"><source src="{{ site.baseurl }}/files/videos/driving_hazard_belief_parking_cut_in.mp4" type="video/mp4"></video>
-<figcaption><span class="pvid__label lang-en">IBD · parking cut-in</span><span class="pvid__label lang-ko" lang="ko">IBD · 주차 차량 끼어들기</span><span class="pvid__label lang-zh" lang="zh-Hans">IBD · 停放车辆切入</span><span class="lang-en">Top right: per-cell risk for vehicles and pedestrians, updated every step together with the commentary. Real time.</span><span class="lang-ko" lang="ko">오른쪽 위: 차량·보행자 칸별 위험값이 해설과 함께 매 스텝 갱신됩니다. 실제 속도.</span><span class="lang-zh" lang="zh-Hans">右上：车辆与行人的逐格风险值，与解说一起每步更新。实时速度。</span></figcaption>
-</figure>
-<figure class="pvid">
-<video autoplay muted loop playsinline preload="metadata" poster="{{ site.baseurl }}/images/detail/driving/driving_hazard_belief_side_lane_hazard_poster.jpg"><source src="{{ site.baseurl }}/files/videos/driving_hazard_belief_side_lane_hazard.mp4" type="video/mp4"></video>
-<figcaption><span class="pvid__label lang-en">IBD · hazard in the side lane</span><span class="pvid__label lang-ko" lang="ko">IBD · 옆 차선의 위험 요소</span><span class="pvid__label lang-zh" lang="zh-Hans">IBD · 侧车道风险</span><span class="lang-en">Rain and fog; the commentary and the risk map update every step. Real time.</span><span class="lang-ko" lang="ko">비와 안개 속 주행. 해설과 위험 지도가 매 스텝 갱신됩니다. 실제 속도.</span><span class="lang-zh" lang="zh-Hans">雨雾天气；解说与风险地图每步更新。实时速度。</span></figcaption>
-</figure>
 </div>
 
 <h2 class="sec-h"><span class="lang-en">Significance and next steps</span><span class="lang-ko" lang="ko">의의와 다음 단계</span><span class="lang-zh" lang="zh-Hans">意义与下一步</span></h2>
+
+<figure class="pvid pvid--single">
+<video autoplay muted loop playsinline preload="metadata" poster="{{ site.baseurl }}/images/detail/driving/driving_ibd_pedestrian_3248_sample_poster.jpg"><source src="{{ site.baseurl }}/files/videos/driving_ibd_pedestrian_3248_sample.mp4" type="video/mp4"></video>
+<figcaption><span class="pvid__label lang-en">Illustrative sample · what the pedestrian risk map should show</span><span class="pvid__label lang-ko" lang="ko">예시 샘플 · 보행자 위험 지도가 보여 줘야 할 모습</span><span class="pvid__label lang-zh" lang="zh-Hans">示例样本 · 行人风险地图应呈现的样子</span><span class="lang-en">The same pedestrian scene as above. This clip was made from a hand-edited log, so it is not model output: it shows the target, where the front-right pedestrian cells light up while the pedestrian is still hidden behind the parked car. The real run is in the closed-loop section above. 0.5&times; speed.</span><span class="lang-ko" lang="ko">위와 같은 보행자 장면입니다. 이 영상은 손으로 수정한 로그로 만든 것이라 모델 출력이 아닙니다. 보행자가 아직 주차 차량 뒤에 숨어 있을 때 오른쪽 앞 보행자 칸이 켜지는, 목표 모습을 보여 줍니다. 실제 주행은 위의 폐루프 영상에 있습니다. 0.5배속.</span><span class="lang-zh" lang="zh-Hans">与上方相同的行人场景。该视频由手动修改的日志生成，因此不是模型输出：它展示的是目标效果，即行人仍被停放车辆遮挡时，右前方的行人格子亮起。真实行驶见上方闭环视频。0.5 倍速。</span></figcaption>
+</figure>
 
 <div class="lang-en">
 <ul>
