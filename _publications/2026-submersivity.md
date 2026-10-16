@@ -44,7 +44,7 @@ tldr_zh:
   - "多伦多 Peter Street Basin 的水下垃圾难以看清。本系统把 RC 潜艇视频转成 XR 泳镜上的引导。"
   - "YOLOv8s 检测垃圾，COLMAP + ArUco 将其标到水池地图上，Vuzix HUD 显示方向、距离和类别。"
   - "我的部分：检测器（多类 YOLOv8n → 单类 YOLOv8s，TACO mAP50 0.27 → 0.49；精确率 92.1%）和 Android HUD 接收端。"
-excerpt: "XR-guided underwater garbage detection with an RC submarine, a YOLOv8s detector, basin localization and a swim-goggle HUD (IEEE ICMA 2026, 3rd author)."
+excerpt: "XR-guided underwater garbage detection with an RC submarine, a YOLOv8s detector, basin localization and a swim-goggle HUD (IEEE ICMA 2026; built jointly with the first two authors)."
 meta_in_body: true
 featured: false
 collection: publications
