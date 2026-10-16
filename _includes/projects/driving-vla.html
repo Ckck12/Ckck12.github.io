@@ -3,11 +3,8 @@
   Used by _publications/2026-salience-driving-vla.md and _portfolio/01-driving-vla.md.
   The global language switcher lives in the masthead; this include only provides en / ko / zh blocks.
   No experiment results on this page (user decision, 2026-10-15): motivation, problem, method, and videos with their meaning.
-  Every video except one is real: dataset frames with verbatim labels, released-SimLingo open-loop text edits, and closed-loop runs
-  in which the risk table was drawn by the agent itself while driving. The exception is driving_ibd_pedestrian_3248_sample.mp4
-  (user's file, uploaded unmodified on 2026-10-16; same frames as V_ped3248_bev_INTENDED.mp4 without its "not model output" chip):
-  built from a hand-edited lang.jsonl, so it sits under "Significance" and its title and caption must keep calling it a
-  next-step mock-up, never a run result (user-approved wording, 2026-10-17).
+  Videos: dataset frames with verbatim labels, released-SimLingo open-loop text edits, and closed-loop runs in which the risk table
+  was drawn by the agent itself while driving. driving_ibd_pedestrian_3248_sample.mp4 (under "Significance"): next-step mock-up.
 {% endcomment %}{% assign drv_doc = site.publications | where: "pub_id", "driving-vla" | first %}
 {% include tldr.html doc=drv_doc %}
 
