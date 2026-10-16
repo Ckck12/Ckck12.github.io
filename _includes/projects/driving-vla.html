@@ -6,8 +6,8 @@
   Every video except one is real: dataset frames with verbatim labels, released-SimLingo open-loop text edits, and closed-loop runs
   in which the risk table was drawn by the agent itself while driving. The exception is driving_ibd_pedestrian_3248_sample.mp4
   (user's file, uploaded unmodified on 2026-10-16; same frames as V_ped3248_bev_INTENDED.mp4 without its "not model output" chip):
-  built from a hand-edited lang.jsonl, so it sits under "Significance" and its caption must keep calling it a mock-up whose
-  risk values were set by hand (user-approved wording, 2026-10-17).
+  built from a hand-edited lang.jsonl, so it sits under "Significance" and its title and caption must keep calling it a
+  next-step mock-up, never a run result (user-approved wording, 2026-10-17).
 {% endcomment %}{% assign drv_doc = site.publications | where: "pub_id", "driving-vla" | first %}
 {% include tldr.html doc=drv_doc %}
 
@@ -127,7 +127,7 @@
 
 <figure class="pvid pvid--single">
 <video autoplay muted loop playsinline preload="metadata" poster="{{ site.baseurl }}/images/detail/driving/driving_ibd_pedestrian_3248_sample_poster.jpg"><source src="{{ site.baseurl }}/files/videos/driving_ibd_pedestrian_3248_sample.mp4" type="video/mp4"></video>
-<figcaption><span class="pvid__label lang-en">Next-step mock-up · pedestrian risk map</span><span class="pvid__label lang-ko" lang="ko">다음 단계 목업 · 보행자 위험 지도</span><span class="pvid__label lang-zh" lang="zh-Hans">下一步示意 · 行人风险地图</span><span class="lang-en">A mock-up of the same pedestrian scene: once the pedestrian cells have training targets, the front-right cells should light up like this while the pedestrian is still hidden behind the parked car. The risk values here were set by hand; the real run is in the closed-loop section above. 0.5&times; speed.</span><span class="lang-ko" lang="ko">같은 보행자 장면의 목업입니다. 보행자 칸에 학습 정답이 생기면, 보행자가 아직 주차 차량 뒤에 숨어 있을 때 오른쪽 앞 칸이 이렇게 켜져야 합니다. 여기의 위험값은 직접 넣은 값이며, 실제 주행은 위의 폐루프 영상에 있습니다. 0.5배속.</span><span class="lang-zh" lang="zh-Hans">同一行人场景的示意：行人格子有了训练目标后，行人仍被停放车辆遮挡时，右前方的格子应像这样亮起。此处的风险值为手动设定；真实行驶见上方闭环视频。0.5 倍速。</span></figcaption>
+<figcaption><span class="pvid__label lang-en">Next-step mock-up · pedestrian risk map</span><span class="pvid__label lang-ko" lang="ko">다음 단계 목업 · 보행자 위험 지도</span><span class="pvid__label lang-zh" lang="zh-Hans">下一步示意 · 行人风险地图</span><span class="lang-en">A mock-up of the same pedestrian scene: once the pedestrian cells have training targets, the front-right cells should light up like this while the pedestrian is still hidden behind the parked car. The real run is in the closed-loop section above. 0.5&times; speed.</span><span class="lang-ko" lang="ko">같은 보행자 장면의 목업입니다. 보행자 칸에 학습 정답이 생기면, 보행자가 아직 주차 차량 뒤에 숨어 있을 때 오른쪽 앞 칸이 이렇게 켜져야 합니다. 실제 주행은 위의 폐루프 영상에 있습니다. 0.5배속.</span><span class="lang-zh" lang="zh-Hans">同一行人场景的示意：行人格子有了训练目标后，行人仍被停放车辆遮挡时，右前方的格子应像这样亮起。真实行驶见上方闭环视频。0.5 倍速。</span></figcaption>
 </figure>
 
 <div class="lang-en">
