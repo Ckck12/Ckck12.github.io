@@ -45,14 +45,14 @@ redirect_from:
 
 <h1 id="publications"><span class="lang-en">Publications</span><span class="lang-ko" lang="ko">논문</span><span class="lang-zh" lang="zh-Hans">论文</span></h1>
 
-1. **Chan Park**. "Interpretable Autonomous Driving VLA through Belief Distillation (IBD)." Ongoing project.
-2. **Chan Park**, Sunwoo Hong, Kirak Kim, Yoonjeong Park, Alexander W. Olson, and Ali Pesaranghader. "Route-Guided CBF-QP Repair for Safe Vision-Language-Action Models." Workshop on Trustworthy Embodied Foundation Models, Robotics: Science and Systems (RSS) 2026.
-3. Chris McGale, Michel A. Herrera Viyella, **Chan Park**, Daniel Bros, Alexander Vicol, and Steve Mann. "Submersivity: XR-Guided Garbage Detection with an RC Submarine for Peter Street Basin Cleanup." IEEE International Conference on Mechatronics and Automation (ICMA) 2026.
-4. Alexander Vicol, Steve Mann, Chris McGale, Gianella Bejar-Alvarez, Michel Herrera Viyella, Darya Zanjanpour, **Chan Park**, Xiaoming Chen, Xueqi Yang, and Bingxuan Yang. "State-of-Flight: Wearable EEG and Motion Context During Flying or Floating." IEEE International Symposium on Computer-Based Medical Systems (CBMS) 2026.
-5. **Chan Park**, Hyeongjun Choi, Muhammad Shahid Muneer, Binh Minh Le, and Simon S. Woo. "ICR-Net: Robust Deepfake Detection under Temporal Corruption." Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD) 2026.
-6. **Chan Park**, Muhammad Shahid Muneer, and Simon S. Woo. "Beyond Masking: Landmark-based Representation Learning and Knowledge-Distillation for Audio-Visual Deepfake Detection." ACM International Conference on Information and Knowledge Management (CIKM) 2025, Short Paper.
-7. **Chan Park**\*, Bohyun Moon\*, Minsun Jeon, Jee-weon Jung, and Simon S. Woo. "X3A: Efficient Multimodal Deepfake Detection with Score-Level Fusion." ACM/SIGAPP Symposium on Applied Computing (SAC) 2025.
-8. "Weighted Contrastive Learning for Robust Audio-Visual Deepfake Detection." Under review.
+1. "Weighted Contrastive Learning for Robust Audio-Visual Deepfake Detection." ACM International Conference on Web Search and Data Mining (WSDM) 2027.
+2. **Chan Park**. "Interpretable Autonomous Driving VLA through Belief Distillation (IBD)." Ongoing project.
+3. **Chan Park**, Sunwoo Hong, Kirak Kim, Yoonjeong Park, Alexander W. Olson, and Ali Pesaranghader. "Route-Guided CBF-QP Repair for Safe Vision-Language-Action Models." Workshop on Trustworthy Embodied Foundation Models, Robotics: Science and Systems (RSS) 2026.
+4. Chris McGale, Michel A. Herrera Viyella, **Chan Park**, Daniel Bros, Alexander Vicol, and Steve Mann. "Submersivity: XR-Guided Garbage Detection with an RC Submarine for Peter Street Basin Cleanup." IEEE International Conference on Mechatronics and Automation (ICMA) 2026.
+5. Alexander Vicol, Steve Mann, Chris McGale, Gianella Bejar-Alvarez, Michel Herrera Viyella, Darya Zanjanpour, **Chan Park**, Xiaoming Chen, Xueqi Yang, and Bingxuan Yang. "State-of-Flight: Wearable EEG and Motion Context During Flying or Floating." IEEE International Symposium on Computer-Based Medical Systems (CBMS) 2026.
+6. **Chan Park**, Hyeongjun Choi, Muhammad Shahid Muneer, Binh Minh Le, and Simon S. Woo. "ICR-Net: Robust Deepfake Detection under Temporal Corruption." Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD) 2026.
+7. **Chan Park**, Muhammad Shahid Muneer, and Simon S. Woo. "Beyond Masking: Landmark-based Representation Learning and Knowledge-Distillation for Audio-Visual Deepfake Detection." ACM International Conference on Information and Knowledge Management (CIKM) 2025, Short Paper.
+8. **Chan Park**\*, Bohyun Moon\*, Minsun Jeon, Jee-weon Jung, and Simon S. Woo. "X3A: Efficient Multimodal Deepfake Detection with Score-Level Fusion." ACM/SIGAPP Symposium on Applied Computing (SAC) 2025.
 9. "Where Are the Artifacts? Residual-Guided Representation Learning for Deepfake Detection and Localization." Under review.
 
 <p><span class="lang-en">* equal contribution · Full details and links on the <a href="{{ base_path }}/publications/">Publications</a> page.</span><span class="lang-ko" lang="ko">* 동등 기여 · 자세한 내용과 링크는 <a href="{{ base_path }}/publications/">논문</a> 페이지에 있습니다.</span><span class="lang-zh" lang="zh-Hans">* 同等贡献 · 详情与链接见<a href="{{ base_path }}/publications/">论文</a>页面。</span></p>
