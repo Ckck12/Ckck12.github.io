@@ -1,6 +1,19 @@
 ---
 title: "Weighted Contrastive Learning for Robust Audio-Visual Deepfake Detection"
-authors:
+authors: "Muhammad Shahid Muneer, Chan Park, Binh Minh Le, Simon S. Woo"
+author_list:
+  - name: "Muhammad Shahid Muneer"
+    sup: "1"
+  - name: "Chan Park"
+    sup: "1"
+    me: true
+  - name: "Binh Minh Le"
+    sup: "2"
+  - name: "Simon S. Woo"
+    sup: "1"
+affiliations:
+  - "<sup>1</sup>Sungkyunkwan University"
+  - "<sup>2</sup>Meta"
 venue: "ACM International Conference on Web Search and Data Mining (WSDM) 2027"
 status:
 year: 2027

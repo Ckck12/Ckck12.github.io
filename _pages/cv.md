@@ -45,7 +45,7 @@ redirect_from:
 
 <h1 id="publications"><span class="lang-en">Publications</span><span class="lang-ko" lang="ko">논문</span><span class="lang-zh" lang="zh-Hans">论文</span></h1>
 
-1. "Weighted Contrastive Learning for Robust Audio-Visual Deepfake Detection." ACM International Conference on Web Search and Data Mining (WSDM) 2027.
+1. Muhammad Shahid Muneer, **Chan Park**, Binh Minh Le, and Simon S. Woo. "Weighted Contrastive Learning for Robust Audio-Visual Deepfake Detection." ACM International Conference on Web Search and Data Mining (WSDM) 2027.
 2. **Chan Park**. "Interpretable Autonomous Driving VLA through Belief Distillation (IBD)." Ongoing project.
 3. **Chan Park**, Sunwoo Hong, Kirak Kim, Yoonjeong Park, Alexander W. Olson, and Ali Pesaranghader. "Route-Guided CBF-QP Repair for Safe Vision-Language-Action Models." Workshop on Trustworthy Embodied Foundation Models, Robotics: Science and Systems (RSS) 2026.
 4. Chris McGale, Michel A. Herrera Viyella, **Chan Park**, Daniel Bros, Alexander Vicol, and Steve Mann. "Submersivity: XR-Guided Garbage Detection with an RC Submarine for Peter Street Basin Cleanup." IEEE International Conference on Mechatronics and Automation (ICMA) 2026.
