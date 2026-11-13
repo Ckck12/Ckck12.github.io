@@ -1,11 +1,24 @@
 ---
 title: "Weighted Contrastive Learning for Robust Audio-Visual Deepfake Detection"
-authors:
-venue: ""
-status: "Under review"
-year:
-date: 2025-01-01   # placeholder for ordering only; the submission date is not public
-order: 8
+authors: "Muhammad Shahid Muneer, Chan Park, Binh Minh Le, Simon S. Woo"
+author_list:
+  - name: "Muhammad Shahid Muneer"
+    sup: "1"
+  - name: "Chan Park"
+    sup: "1"
+    me: true
+  - name: "Binh Minh Le"
+    sup: "2"
+  - name: "Simon S. Woo"
+    sup: "1"
+affiliations:
+  - "<sup>1</sup>Sungkyunkwan University"
+  - "<sup>2</sup>Meta"
+venue: "ACM International Conference on Web Search and Data Mining (WSDM) 2027"
+status:
+year: 2027
+date: 2027-02-01   # year-level only; used for ordering
+order: 0
 teaser: hashformer_teaser.png
 teaser_hover: hashformer_hover.png
 paper_url:
@@ -26,7 +39,7 @@ tldr_zh:
   - "音视频深度伪造混合了换脸、唇形同步和声音克隆；全局对齐会漏掉细粒度的局部线索。"
   - "HashFormer 在二值哈希空间中用加权对比式损失，学习模态间与模态内的细粒度特征。"
   - "模态专属 token 聚焦单模态线索；模型设计上可在缺失某一模态时保持稳健。"
-excerpt: "HashFormer: weighted contrastive alignment in a binary hash space for audio-visual deepfake detection, designed for missing-modality robustness. Under review."
+excerpt: "HashFormer: weighted contrastive alignment in a binary hash space for audio-visual deepfake detection, designed for missing-modality robustness. WSDM 2027."
 meta_in_body: true
 featured: false
 collection: publications
@@ -39,7 +52,7 @@ collection: publications
 <div class="proj-body">
 
 <div class="lang-en">
-<p><strong>Under review.</strong> This page summarizes the submitted abstract and shows the paper's figures. Authors, venue and results will be added after review. Anonymized code (HashFormer) is available for reviewers.</p>
+<p><strong>Accepted to WSDM 2027 (main conference).</strong> This page summarizes the abstract and shows the paper's figures. Anonymized code (HashFormer) is available.</p>
 <h2 class="sec-h">Problem</h2>
 <ul>
 <li>Audio-visual deepfakes mix face swapping, lip-syncing, reenactment and voice cloning.</li>
@@ -50,7 +63,7 @@ collection: publications
 </ul>
 </div>
 <div class="lang-ko" lang="ko">
-<p><strong>심사 중.</strong> 이 페이지는 제출본 초록을 요약하고 논문 그림을 보여 줍니다. 저자, 게재처, 결과는 심사 후 추가합니다. 심사용 익명 코드(HashFormer)가 공개되어 있습니다.</p>
+<p><strong>WSDM 2027 메인 컨퍼런스 채택.</strong> 이 페이지는 초록을 요약하고 논문 그림을 보여 줍니다. 익명 코드(HashFormer)가 공개되어 있습니다.</p>
 <h2 class="sec-h">문제</h2>
 <ul>
 <li>음성-영상 딥페이크에는 얼굴 교체, 립싱크, 재연(reenactment), 음성 복제가 섞여 있습니다.</li>
@@ -61,7 +74,7 @@ collection: publications
 </ul>
 </div>
 <div class="lang-zh" lang="zh-Hans">
-<p><strong>审稿中。</strong>本页概述投稿摘要并展示论文图示。作者、发表处和结果将在审稿结束后补充。已提供供审稿使用的匿名代码（HashFormer）。</p>
+<p><strong>已被 WSDM 2027 主会录用。</strong>本页概述论文摘要并展示论文图示。已公开匿名代码（HashFormer）。</p>
 <h2 class="sec-h">问题</h2>
 <ul>
 <li>音视频深度伪造混合了换脸、唇形同步、表情重演（reenactment）和声音克隆。</li>
