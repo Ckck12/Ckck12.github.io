@@ -60,8 +60,10 @@ order: 0.5
 </div>
 
 <figure class="pfig">
-<img src="{{ site.baseurl }}/images/projects/caster_cut_pipeline.png" alt="CASTER CUT pipeline: rally finder, court calibration, shuttle and player tracking with SAM 3.1, rally reconstruction, commentary with Claude and ElevenLabs, HUD and render" loading="lazy">
-<figcaption><span class="lang-en">The pipeline: a phone video becomes a highlight MP4 in six stages. Blue stages call an external AI model; grey stages are algorithms in the project's own code. Logos are trademarks of their owners.</span><span class="lang-ko" lang="ko">전체 파이프라인: 휴대폰 영상이 여섯 단계를 거쳐 하이라이트 MP4가 됩니다. 파란 단계는 외부 AI 모델을 부르고, 회색 단계는 프로젝트 코드로 구현한 알고리즘입니다. 로고는 각 회사의 상표입니다.</span><span class="lang-zh" lang="zh-Hans">整体流程：一段手机视频经过六个阶段变成集锦 MP4。蓝色阶段调用外部 AI 模型，灰色阶段是项目自身代码实现的算法。各标志为其所有者的商标。</span></figcaption>
+<img class="lang-en" style="width:100%;max-width:640px" src="{{ site.baseurl }}/images/projects/caster_cut_pipeline_en.png" alt="CASTER CUT pipeline: highlight selection, court calibration, shuttle and player tracking with SAM 3.1, rally reconstruction, commentary with Claude and ElevenLabs, HUD and render" loading="lazy">
+<img class="lang-ko" lang="ko" style="width:100%;max-width:640px" src="{{ site.baseurl }}/images/projects/caster_cut_pipeline_ko.png" alt="CASTER CUT 파이프라인: 하이라이트 선정, 코트 보정, 셔틀·선수 추적(SAM 3.1), 랠리 복원, 해설(Claude, ElevenLabs), 중계 화면과 렌더" loading="lazy">
+<img class="lang-zh" lang="zh-Hans" style="width:100%;max-width:640px" src="{{ site.baseurl }}/images/projects/caster_cut_pipeline_zh.png" alt="CASTER CUT 流程：集锦选取、场地标定、羽毛球与球员跟踪（SAM 3.1）、回合重建、解说（Claude、ElevenLabs）、转播画面与渲染" loading="lazy">
+<figcaption><span class="lang-en">The pipeline: a phone video becomes a highlight MP4 in six stages. Stages with a logo call an external AI model; the others are algorithms in the project's own code. The small drawings are schematic. Logos are trademarks of their owners.</span><span class="lang-ko" lang="ko">전체 파이프라인: 휴대폰 영상이 여섯 단계를 거쳐 하이라이트 MP4가 됩니다. 로고가 붙은 단계는 외부 AI 모델을 사용하고, 나머지는 프로젝트 코드로 구현한 알고리즘입니다. 단계 안의 작은 그림은 개념도입니다. 로고는 각 회사의 상표입니다.</span><span class="lang-zh" lang="zh-Hans">整体流程：一段手机视频经过六个阶段变成集锦 MP4。带标志的阶段调用外部 AI 模型，其余是项目自身代码实现的算法。各阶段中的小图为示意图。各标志为其所有者的商标。</span></figcaption>
 </figure>
 
 <div class="lang-en">
