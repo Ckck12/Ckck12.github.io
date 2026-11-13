@@ -46,7 +46,7 @@ tldr_zh:
   - "我的部分：检测器（多类 YOLOv8n → 单类 YOLOv8s，TACO mAP50 0.27 → 0.49；精确率 92.1%）和 Android HUD 接收端。"
 excerpt: "XR-guided underwater garbage detection with an RC submarine, a YOLOv8s detector, basin localization and a swim-goggle HUD (IEEE ICMA 2026; built jointly with the first two authors)."
 meta_in_body: true
-featured: false
+featured: true
 collection: publications
 details_url: /portfolio/04-submersivity/
 redirect_to: /portfolio/04-submersivity/
