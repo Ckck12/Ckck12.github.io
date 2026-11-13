@@ -19,8 +19,8 @@ status:
 year: 2027
 date: 2027-02-01   # year-level only; used for ordering
 order: 0
-teaser: hashformer_teaser.png
-teaser_hover: hashformer_hover.png
+teaser: hashformer_teaser_v2.png
+teaser_hover: hashformer_hover_v2.png
 paper_url:
 code_url: https://anonymous.4open.science/r/hashformer-4CE6/
 project_url:
